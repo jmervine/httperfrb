@@ -1,7 +1,7 @@
 HTTPERF.rb
 ==========
 
-### [Documentation](http://rubyops.github.com/httperfrb/doc/) | [Coverage](http://rubyops.github.com/httperfrb/doc/) 
+### [Documentation](http://rubyops.github.com/httperfrb/doc/) | [Coverage](http://rubyops.github.com/httperfrb/coverage/) 
 
 Simple Ruby interface for httperf.
 
