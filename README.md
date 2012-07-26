@@ -5,27 +5,33 @@ HTTPERF.rb
 
 Simple Ruby interface for httperf.
 
-Requires httperf, of course...
+#### Note
+
+This currently needs a lot of work to be production ready. It's done more in a scripting style then a true solid application style. 
+
+
 
 ### Installing 'httperf'
 
-#### Mac
+Requires httperf, of course...
+
+##### Mac
 
     sudo port install httperf
 
-#### Debian / Ubuntu
+##### Debian / Ubuntu
 
     sudo apt-get install httperf
 
-#### Redhat / CentOS
+##### Redhat / CentOS
 
     sudo yum install httperf
 
-### Install
+#### Install
 
     gem install httperfrb
 
-### Usage
+#### Usage
 
     require 'httperf'
     perf = HTTPerf.new( "server" => "host", "port" => 8080, "uri" => "/foo" )
