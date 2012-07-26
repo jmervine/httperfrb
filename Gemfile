@@ -1,4 +1,5 @@
 source :rubygems
+gem 'open4'
 
 group :development do
   gem 'yard'
