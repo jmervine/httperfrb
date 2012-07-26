@@ -1,12 +1,55 @@
+# @author Joshua Mervine <joshua@mervine.net>
 class HTTPerf
-  VERSION = "0.0.1"
+  # gem version
+  VERSION = "0.0.2"
 
+  # availbe instance methods
   @options, @command = nil
 
   # initialize with (optional):
-  # - options: see 'man httperf'
+  # - options: see below for options
+  #   - see 'man httfperf' for details
   # - path: path to httperf
   #   - e.g. /usr/bin/httperf
+  #
+  # available options:
+  #   -  add-header
+  #   -  burst-length
+  #   -  client
+  #   -  close-with-reset
+  #   -  debug
+  #   -  failure-status
+  #   -  hog
+  #   -  http-version
+  #   -  max-connections
+  #   -  max-piped-calls
+  #   -  method
+  #   -  no-host-hdr
+  #   -  num-calls
+  #   -  num-conns
+  #   -  period
+  #   -  port
+  #   -  print-reply
+  #   -  print-request
+  #   -  rate
+  #   -  recv-buffer
+  #   -  retry-on-failure
+  #   -  send-buffer
+  #   -  server
+  #   -  server-name
+  #   -  session-cookies
+  #   -  ssl
+  #   -  ssl-ciphers
+  #   -  ssl-no-reuse
+  #   -  think-timeout
+  #   -  timeout
+  #   -  uri
+  #   -  verbose
+  #   -  version
+  #   -  wlog
+  #   -  wsess
+  #   -  wsesslog
+  #   -  wset
   def initialize options={}, path=nil
     options.each_key do |k|
       raise "#{k} is an invalid httperf param" unless params.keys.include?(k)
@@ -39,6 +82,7 @@ class HTTPerf
   end
 
   private
+  # build commandline options string
   def options
     opts = ""
     @options.each do |key,val|
@@ -47,6 +91,7 @@ class HTTPerf
     opts
   end
 
+  # define httperf available options
   def params
     {
       "add-header" => nil,
@@ -63,10 +108,10 @@ class HTTPerf
       "no-host-hdr" => nil,
       "num-calls" => nil,
       "num-conns" => nil,
-      "period [d|u|e" => nil,
+      "period" => nil,
       "port" => nil,
-      "print-reply [header|body" => nil,
-      "print-request [header|body" => nil,
+      "print-reply" => nil,
+      "print-request" => nil,
       "rate" => nil,
       "recv-buffer" => nil,
       "retry-on-failure" => nil,
