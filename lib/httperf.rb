@@ -1,10 +1,12 @@
 # @author Joshua Mervine <joshua@mervine.net>
+require 'open4'
 class HTTPerf
   # gem version
   VERSION = "0.0.2"
 
   # availbe instance methods
-  @options, @command = nil
+  @fork_out, @fork_err = ''
+  @fork_thr, @options, @command = nil
 
   # initialize with (optional):
   # - options: see below for options
@@ -52,7 +54,7 @@ class HTTPerf
   #   -  wset
   def initialize options={}, path=nil
     options.each_key do |k|
-      raise "#{k} is an invalid httperf param" unless params.keys.include?(k)
+      raise "'#{k}' is an invalid httperf param" unless params.keys.include?(k)
     end
     @options = params.merge(options)  
     if path.nil?
@@ -72,13 +74,39 @@ class HTTPerf
 
   # run httperf 
   def run 
-    return %x{ #{@command} #{options} }
+    status, out, err = nil
+    Open3.popen3(command) do |stdin, stdout, stderr, wait_thr|
+      pid = wait_thr.pid
+      out = stdout.readlines
+      err = stderr.readlines
+      status = wait_thr.value
+    end
+    if status == 0
+      return out.join("\n")
+    else
+      return err.join("\n")
+    end
+  end
+
+  def fork
+    raise "httperf fork currently running" if @fork_thr && @fork_thr.alive?
+    @fork_out, @fork_err = ''
+    @fork_thr = Open4::bg command, :stdin => nil, :stdout => @fork_out, :stderr => @fork_err
+    @fork_thr
+  end
+
+  def fork_out
+    @fork_out
+  end
+
+  def fork_err
+    @fork_err
   end
 
   # print httperf command to be run
   # - for debugging and testing
-  def pretend
-    return %x{ echo "#{@command} #{options}" }
+  def command 
+    return "#{@command} #{options}"
   end
 
   private
