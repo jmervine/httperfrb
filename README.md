@@ -33,10 +33,20 @@ Requires httperf, of course...
 
 #### Usage
 
+Some basic usage examples.
+
     require 'httperf'
     perf = HTTPerf.new( "server" => "host", "port" => 8080, "uri" => "/foo" )
-    perf.run
+    puts perf.run
 
     perf.update_option("uri", "/foo/bar")
-    perf.run
+    thread = perf.fork
+    while((thread.alive?))
+      sleep 0.01
+      print "#"
+    end
+    unless perf.fork_err.nil?
+      puts perf.fork_out
+    end
+  
 

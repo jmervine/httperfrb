@@ -1,6 +1,10 @@
 HTTPerf.rb
 ==========
 
+### 0.1.1
+
+* updating gem dependancy list to include 'open4'
+
 ### 0.1.0
 
 * refactored #run to run system commands in a cleaner fashion
