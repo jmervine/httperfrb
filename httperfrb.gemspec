@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "simplecov"
   s.add_development_dependency "yard"
 
-  s.add_dependenct "open4"
+  s.add_dependency "open4"
  
   s.files        = Dir.glob("lib/**/*") + %w(README.md HISTORY.md Gemfile)
   s.require_path = 'lib'
