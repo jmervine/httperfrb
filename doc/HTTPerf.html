@@ -186,7 +186,10 @@ for debugging and testing.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+run httperf, fork and return thread.
+</p>
+</div></span>
   
 </li>
 
@@ -208,7 +211,10 @@ for debugging and testing.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+return errors from last fork.
+</p>
+</div></span>
   
 </li>
 
@@ -230,7 +236,10 @@ for debugging and testing.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+return results of last fork.
+</p>
+</div></span>
   
 </li>
 
@@ -336,7 +345,7 @@ define httperf available options.
 
   
     <span class="summary_desc"><div class='inline'><p>
-run httperf.
+run httperf and wait for it to finish.
 </p>
 </div></span>
   
@@ -541,12 +550,12 @@ for debugging and testing
       <pre class="lines">
 
 
-108
-109
-110</pre>
+113
+114
+115</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/httperf.rb', line 108</span>
+      <pre class="code"><span class="info file"># File 'lib/httperf.rb', line 113</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_command'>command</span> 
   <span class='kw'>return</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@command</span><span class='rbrace'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_options'>options</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
@@ -565,21 +574,33 @@ for debugging and testing
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>
+run httperf, fork and return thread
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-91
-92
-93
 94
 95
-96</pre>
+96
+97
+98
+99</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/httperf.rb', line 91</span>
+      <pre class="code"><span class="info file"># File 'lib/httperf.rb', line 94</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_fork'>fork</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>httperf fork currently running</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='ivar'>@fork_thr</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@fork_thr</span><span class='period'>.</span><span class='id identifier rubyid_alive?'>alive?</span>
@@ -601,18 +622,30 @@ for debugging and testing
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>
+return errors from last fork
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-102
-103
-104</pre>
+107
+108
+109</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/httperf.rb', line 102</span>
+      <pre class="code"><span class="info file"># File 'lib/httperf.rb', line 107</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_fork_err'>fork_err</span>
   <span class='ivar'>@fork_err</span>
@@ -631,18 +664,30 @@ for debugging and testing
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>
+return results of last fork
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-98
-99
-100</pre>
+102
+103
+104</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/httperf.rb', line 98</span>
+      <pre class="code"><span class="info file"># File 'lib/httperf.rb', line 102</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_fork_out'>fork_out</span>
   <span class='ivar'>@fork_out</span>
@@ -679,16 +724,16 @@ build commandline options string
       <pre class="lines">
 
 
-114
-115
-116
-117
-118
 119
-120</pre>
+120
+121
+122
+123
+124
+125</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/httperf.rb', line 114</span>
+      <pre class="code"><span class="info file"># File 'lib/httperf.rb', line 119</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_options'>options</span>
   <span class='id identifier rubyid_opts'>opts</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
@@ -729,11 +774,6 @@ define httperf available options
       <pre class="lines">
 
 
-123
-124
-125
-126
-127
 128
 129
 130
@@ -769,10 +809,15 @@ define httperf available options
 160
 161
 162
-163</pre>
+163
+164
+165
+166
+167
+168</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/httperf.rb', line 123</span>
+      <pre class="code"><span class="info file"># File 'lib/httperf.rb', line 128</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_params'>params</span>
   <span class='lbrace'>{</span>
@@ -832,8 +877,11 @@ define httperf available options
 </h3><div class="docstring">
   <div class="discussion">
     <p>
-run httperf
+run httperf and wait for it to finish
 </p>
+<pre class="code ruby"><code>
+ return errors if any, otherwise return
+ results</code></pre>
 
 
   </div>
@@ -847,8 +895,6 @@ run httperf
       <pre class="lines">
 
 
-76
-77
 78
 79
 80
@@ -860,10 +906,12 @@ run httperf
 86
 87
 88
-89</pre>
+89
+90
+91</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/httperf.rb', line 76</span>
+      <pre class="code"><span class="info file"># File 'lib/httperf.rb', line 78</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_run'>run</span> 
   <span class='id identifier rubyid_status'>status</span><span class='comma'>,</span> <span class='id identifier rubyid_out'>out</span><span class='comma'>,</span> <span class='id identifier rubyid_err'>err</span> <span class='op'>=</span> <span class='kw'>nil</span>
@@ -931,7 +979,7 @@ update a given option
 </div>
 
     <div id="footer">
-  Generated on Fri Jul 27 00:20:59 2012 by
+  Generated on Fri Jul 27 00:26:01 2012 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.2.1 (ruby-1.9.2).
 </div>

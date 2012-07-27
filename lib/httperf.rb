@@ -72,7 +72,9 @@ class HTTPerf
     @options[opt] = val
   end
 
-  # run httperf 
+  # run httperf and wait for it to finish
+  #  return errors if any, otherwise return
+  #  results
   def run 
     status, out, err = nil
     Open3.popen3(command) do |stdin, stdout, stderr, wait_thr|
@@ -88,6 +90,7 @@ class HTTPerf
     end
   end
 
+  # run httperf, fork and return thread
   def fork
     raise "httperf fork currently running" if @fork_thr && @fork_thr.alive?
     @fork_out, @fork_err = ''
@@ -95,10 +98,12 @@ class HTTPerf
     @fork_thr
   end
 
+  # return results of last fork
   def fork_out
     @fork_out
   end
 
+  # return errors from last fork
   def fork_err
     @fork_err
   end
