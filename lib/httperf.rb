@@ -2,7 +2,7 @@
 require 'open4'
 class HTTPerf
   # gem version
-  VERSION = "0.1.0"
+  VERSION = "0.1.1"
 
   # availbe instance methods
   @fork_out, @fork_err = ''
