@@ -1,6 +1,10 @@
 HTTPerf.rb
 ==========
 
+### 0.1.2
+
+* fixed an issue with run output
+
 ### 0.1.1
 
 * updating gem dependancy list to include 'open4'
