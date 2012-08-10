@@ -2,7 +2,7 @@
 require 'open4'
 class HTTPerf
   # gem version
-  VERSION = "0.1.1"
+  VERSION = "0.1.2"
 
   # availbe instance methods
   @fork_out, @fork_err = ''
@@ -84,9 +84,9 @@ class HTTPerf
       status = wait_thr.value
     end
     if status == 0
-      return out.join("\n")
+      return out.join
     else
-      return err.join("\n")
+      return err.join
     end
   end
 
