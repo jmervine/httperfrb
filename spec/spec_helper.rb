@@ -3,6 +3,8 @@ SimpleCov.start do
     add_filter "/vendor/"
     add_filter "/coverage/"
     add_filter "/doc/"
+    add_filter "/spec/"
+    add_filter "version.rb"
 end
 
 require './lib/httperf'
