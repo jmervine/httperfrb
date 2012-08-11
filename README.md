@@ -31,7 +31,7 @@ Requires httperf, of course...
 
     gem install httperfrb
 
-#### Usage
+### Usage
 
 Some basic usage examples.
 
@@ -48,5 +48,69 @@ Some basic usage examples.
     unless perf.fork_err.nil?
       puts perf.fork_out
     end
+
+#### With HTTPerf::Parser
+
+    require 'httperf'
+    perf = HTTPerf.new( "server" => "host", "port" => 8080, "uri" => "/foo" )
+    puts perf.parser = true
+    puts perf.run
+
+    # or directly
+
+    puts HTTPerf::Parser.parse( HTTPerf.new( "server" => "host", "port" => 8080, "uri" => "/foo" ).run )
+
+##### Parser Keys: 
+
+    :command
+    :max_connect_burst_length
+    :total_connections
+    :total_requests
+    :total_replies
+    :total_test_duration
+    :connection_rate_per_sec
+    :connection_rate_ms_conn
+    :connection_time_min
+    :connection_time_avg
+    :connection_time_max
+    :connection_time_median
+    :connection_time_stddev
+    :connection_time_connect
+    :connection_length
+    :request_rate_per_sec
+    :request_rate_ms_request
+    :request_size
+    :reply_rate_min
+    :reply_rate_avg
+    :reply_rate_max
+    :reply_rate_stddev
+    :reply_rate_samples
+    :reply_time_response
+    :reply_time_transfer
+    :reply_size_header
+    :reply_size_content
+    :reply_size_footer
+    :reply_size_total
+    :reply_status_1xx
+    :reply_status_2xx
+    :reply_status_3xx
+    :reply_status_4xx
+    :reply_status_5xx
+    :cpu_time_user_sec
+    :cpu_time_system_sec
+    :cpu_time_user_pct
+    :cpu_time_system_pct
+    :cpu_time_total_pct
+    :net_io_kb_sec
+    :net_io_bps
+    :errors_total
+    :errors_client_timeout
+    :errors_socket_timeout
+    :errors_conn_refused
+    :errors_conn_reset
+    :errors_fd_unavail
+    :errors_addr_unavail
+    :errors_ftab_full
+    :errors_other
   
 

@@ -3,8 +3,9 @@ require 'open4'
 require 'parser'
 class HTTPerf
   # gem version
-  VERSION = "0.1.2"
+  VERSION = "0.2.0"
 
+  # @return [Boolean] parse flag
   attr_accessor :parse
 
   # availbe instance methods
@@ -56,7 +57,6 @@ class HTTPerf
   #   -  wsesslog
   #   -  wset
   def initialize options={}, path=nil
-    @parse = true
     options.each_key do |k|
       raise "'#{k}' is an invalid httperf param" unless params.keys.include?(k)
     end

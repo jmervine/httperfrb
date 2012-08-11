@@ -131,7 +131,7 @@ gem version
 
 </div>
         </dt>
-        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>0.1.2</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>0.2.0</span><span class='tstring_end'>&quot;</span></span></pre></dd>
       
     </dl>
   
@@ -145,7 +145,7 @@ gem version
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#parse-instance_method" title="#parse (instance method)">- (Object) <strong>parse</strong> </a>
+      <a href="#parse-instance_method" title="#parse (instance method)">- (Boolean) <strong>parse</strong> </a>
     
 
     
@@ -163,7 +163,7 @@ gem version
 
   
     <span class="summary_desc"><div class='inline'><p>
-Returns the value of attribute parse.
+Parse flag.
 </p>
 </div></span>
   
@@ -468,7 +468,6 @@ available options:
       <pre class="lines">
 
 
-58
 59
 60
 61
@@ -485,10 +484,9 @@ available options:
 72</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/httperf.rb', line 58</span>
+      <pre class="code"><span class="info file"># File 'lib/httperf.rb', line 59</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span> <span class='id identifier rubyid_options'>options</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='id identifier rubyid_path'>path</span><span class='op'>=</span><span class='kw'>nil</span>
-  <span class='ivar'>@parse</span> <span class='op'>=</span> <span class='kw'>true</span>
   <span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_each_key'>each_key</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='op'>|</span>
     <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>'</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_k'>k</span><span class='rbrace'>}</span><span class='tstring_content'>' is an invalid httperf param</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_k'>k</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
@@ -517,7 +515,7 @@ available options:
       <div class="method_details first">
   <h3 class="signature first" id="parse-instance_method">
   
-    - (<tt>Object</tt>) <strong>parse</strong> 
+    - (<tt>Boolean</tt>) <strong>parse</strong> 
   
 
   
@@ -526,7 +524,7 @@ available options:
 </h3><div class="docstring">
   <div class="discussion">
     <p>
-Returns the value of attribute parse
+Parse flag
 </p>
 
 
@@ -534,6 +532,25 @@ Returns the value of attribute parse
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+parse flag
+</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -541,12 +558,12 @@ Returns the value of attribute parse
       <pre class="lines">
 
 
-8
 9
-10</pre>
+10
+11</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/httperf.rb', line 8</span>
+      <pre class="code"><span class="info file"># File 'lib/httperf.rb', line 9</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_parse'>parse</span>
   <span class='ivar'>@parse</span>
@@ -873,7 +890,7 @@ update a given option
 </div>
 
     <div id="footer">
-  Generated on Fri Aug 10 19:23:06 2012 by
+  Generated on Fri Aug 10 21:50:01 2012 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.2.1 (ruby-1.9.2).
 </div>

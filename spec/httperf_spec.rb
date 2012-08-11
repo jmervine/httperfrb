@@ -20,9 +20,9 @@ end
 describe HTTPerf, "#parse" do
   it "should update parse flag" do
     perf = HTTPerf.new($good_params)
-    perf.parse.should be_true
-    perf.parse = false
     perf.parse.should be_false
+    perf.parse = true
+    perf.parse.should be_true
   end
 end
 
@@ -38,6 +38,7 @@ end
 describe HTTPerf, "#run" do
   it "should run httperf and wait for it to finish" do
     perf = HTTPerf.new
+    perf.parse = true
     perf.run.keys.count.should eq 50
   end
 end
@@ -45,7 +46,6 @@ end
 describe HTTPerf, "#run without parse" do
   it "should run httperf and wait for it to finish" do
     perf = HTTPerf.new
-    perf.parse = false
     perf.run.match /^httperf --client=0\/1 --server=localhost --port=80/
   end
 end
@@ -53,7 +53,6 @@ end
 describe HTTPerf, "#fork" do
   before(:all) do
     @perf = HTTPerf.new
-    @perf.parse = false
     @thread = nil
   end
   it "should run httperf and fork the process unless a fork is running" do

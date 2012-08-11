@@ -1,5 +1,12 @@
 class HTTPerf
+
+  # Parse httperf output to a [Hash]
+  #
+  # This can be used standalone or with HTTPerf results.
   class Parser
+
+    # @return [Hash] returns hash of parsed httperf output
+    # @param [String] raw httperf output
     def self.parse raw
 
       lines = raw.split("\n") 
