@@ -9,6 +9,15 @@ describe HTTPerf, "basic usage" do
   it "should init with good params" do 
     expect { HTTPerf.new($good_params) }.to_not raise_error
   end
+  it "should init with verbose" do
+    expect { HTTPerf.new($good_params.merge("verbose" => true)) }.to_not raise_error
+  end
+  it "should init with parse" do
+    expect { HTTPerf.new($good_params.merge("parse" => true)) }.to_not raise_error
+    p = HTTPerf.new($good_params.merge("parse" => true))
+    p.parse.should be_true
+    p.instance_variable_get(:@command).should_not match /parse/
+  end
   it "should raise error with bad params" do
     expect { HTTPerf.new($bad_params) }.to raise_error
   end
@@ -40,6 +49,19 @@ describe HTTPerf, "#run" do
     perf = HTTPerf.new
     perf.parse = true
     perf.run.keys.count.should eq 50
+  end
+end
+
+describe HTTPerf, "#run with verbose" do
+  before(:all) do
+    @run = HTTPerf.new("verbose" => true).run
+  end
+  it "should run httperf and wait for it to finish" do
+    @run.match /^httperf --client=0\/1 --server=localhost --port=80/
+  end
+  it "should run httperf verobsely" do
+    @run.match /^httperf .+ --verbose/
+    @run.match /^Connection lifetime = /
   end
 end
 

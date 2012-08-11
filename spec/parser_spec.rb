@@ -54,8 +54,26 @@ describe HTTPerf::Parser do
 		:errors_addr_unavail=>"0",
 		:errors_ftab_full=>"0",
 		:errors_other=>"0"}.each do |key,val|
-    it "should parse field correctly -- #{key}" do
-      HTTPerf::Parser.parse($results_raw)[key].should eq val
+      it "should parse field correctly -- #{key}" do
+        HTTPerf::Parser.parse($results_raw)[key].should eq val
+      end
+  end
+end
+describe HTTPerf::Parser, "with verbose" do
+  it "should parse raw data" do
+    HTTPerf::Parser.parse($verbose_raw, true).keys.count.should eq 56
+  end
+  {
+    :connection_time_75_pct=>"294.5",
+		:connection_time_80_pct=>"328.5",
+		:connection_time_85_pct=>"392.5",
+		:connection_time_90_pct=>"418.5",
+		:connection_time_95_pct=>"500.5",
+		:connection_time_99_pct=>"688.5"
+  }.each do |key,val|
+    it "should parse verbose correctly -- #{key}" do
+      HTTPerf::Parser.parse($verbose_raw, true)[key].should eq val
+      #p HTTPerf::Parser.parse($verbose_raw, true)[key]#.should eq val
     end
   end
 end

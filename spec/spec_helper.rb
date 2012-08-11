@@ -11,3 +11,4 @@ $bad_params = { "bar" => "param" }
 $good_params = { "server" => "localhost", "port" => 8080, "uri" => "/foo/bar" }
 
 $results_raw = File.open("./spec/dummy_results.txt","r").read
+$verbose_raw = File.open("./spec/dummy_verbose_results.txt","r").read

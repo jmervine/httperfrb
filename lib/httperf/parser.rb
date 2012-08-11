@@ -1,3 +1,4 @@
+#require 'parser/verbose'
 class HTTPerf
 
   # Parse httperf output to a [Hash]
@@ -5,14 +6,60 @@ class HTTPerf
   # This can be used standalone or with HTTPerf results.
   class Parser
 
+    attr_accessor :verbose
+
     # @return [Hash] returns hash of parsed httperf output
     # @param [String] raw httperf output
-    def self.parse raw
+    def self.parse raw, verbose=false
 
       lines = raw.split("\n") 
+      matches = {}
 
+      # for verbose matching
+      verbose_connection_lifetime = []
+
+      lines.each do |line|
+
+        if verbose and verbose_expression.match(line)
+          verbose_connection_lifetime.push($1) 
+          next
+        end
+
+        matched = false
+        unless line.empty?
+          next if matched
+          expressions.each do |key,exp|
+            if exp.match(line) and $1
+              matches[key] = $1
+              matched = true
+            end
+          end
+        end
+      end
+
+      unless verbose_connection_lifetime.empty?
+        percentiles.each do |percentile|
+          matches["connection_time_#{percentile}_pct".to_sym] = calculate_percentile(percentile, verbose_connection_lifetime)
+        end
+      end
+
+      if verbose
+        raise "mismatch error occurred" unless expressions.keys.count+percentiles.count == matches.keys.count
+      else
+        raise "mismatch error occurred" unless expressions.keys.count == matches.keys.count
+      end
+      return matches
+    end
+
+    protected
+
+    def self.verbose_expression
+      /^Connection lifetime = ([0-9]*?\.?[0-9]+)$/
+    end
+
+    def self.expressions
       # While this isn't the most efficent way of doing this, it's the most maintainable.
-      expressions = {
+      {
         :command                    => /^(httperf .+)$/,
 
         # Maximum connect burst length:
@@ -92,25 +139,21 @@ class HTTPerf
         :errors_ftab_full           => /^Errors: fd-unavail .+ ftab-full ([0-9]*?\.?[0-9]+) /,
         :errors_other               => /^Errors: fd-unavail .+ other ([0-9]*?\.?[0-9]+)/
       }
-      
-      matches = {}
+    end
 
-      lines.each do |line|
-        matched = false
-        unless line.empty?
-          expressions.each do |key,exp|
-            matchdata = (exp.match(line)).to_a
-            if $1
-              matches[key] = $1
-              matched = true
-              next
-            end
-          end
-          next if matched
-        end
-      end
-      raise "mismatch error occurred" unless expressions.keys.count == matches.keys.count
-      return matches
+    def self.percentiles
+      [ 75, 80, 85, 90, 95, 99 ]
+    end
+
+    private
+    def self.calculate_percentile percentile, values
+      values.sort!
+      values[percentile_index(percentile, values.count)]
+    end
+
+    def self.percentile_index percentile, count
+      ((count/100)*percentile)-1
     end
   end
 end
+

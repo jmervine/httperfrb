@@ -1,12 +1,11 @@
 # @author Joshua Mervine <joshua@mervine.net>
 require 'open4'
-require 'parser'
+require 'httperf/parser'
+require 'httperf/version'
 class HTTPerf
-  # gem version
-  VERSION = "0.2.0"
 
   # @return [Boolean] parse flag
-  attr_accessor :parse
+  attr_accessor :parse, :verbose
 
   # availbe instance methods
   @fork_out, @fork_err = ''
@@ -57,6 +56,8 @@ class HTTPerf
   #   -  wsesslog
   #   -  wset
   def initialize options={}, path=nil
+    self.parse = options.delete("parse") 
+    self.verbose = true if options.has_key?("verbose")
     options.each_key do |k|
       raise "'#{k}' is an invalid httperf param" unless params.keys.include?(k)
     end
@@ -89,7 +90,7 @@ class HTTPerf
     end
     if status == 0
       if @parse
-        return Parser.parse(out.join)
+        return Parser.parse(out.join, self.verbose)
       else
         return out.join
       end
@@ -109,7 +110,7 @@ class HTTPerf
   # return results of last fork
   def fork_out
     if @parse
-      return Parse.parse @fork_out
+      return Parse.parse(@fork_out, self.parse)
     else
       return @fork_out
     end
@@ -124,6 +125,10 @@ class HTTPerf
   # - for debugging and testing
   def command 
     return "#{@command} #{options}"
+  end
+
+  def verbose
+    @verbose||false
   end
 
   private

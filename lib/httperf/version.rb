@@ -1,0 +1,3 @@
+class HTTPerf
+  VERSION = ""
+end

@@ -1,10 +1,10 @@
-
 task :yard do
   puts %x{ yardoc --protected ./lib/**/*.rb }
 end
 
 task :rspec do
-  puts %x{ rspec }
+  puts %x{ rspec -f d -c | tee rspec.tmp }
+  %x{ cat rspec.tmp | sed -e 's/^/\t\t/g' > RSPECOUT.md && rm rspec.tmp }
 end
 
 task :pages do
