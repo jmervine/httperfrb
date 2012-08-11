@@ -1,8 +1,11 @@
 # @author Joshua Mervine <joshua@mervine.net>
 require 'open4'
+require 'parser'
 class HTTPerf
   # gem version
   VERSION = "0.1.2"
+
+  attr_accessor :parse
 
   # availbe instance methods
   @fork_out, @fork_err = ''
@@ -53,6 +56,7 @@ class HTTPerf
   #   -  wsesslog
   #   -  wset
   def initialize options={}, path=nil
+    @parse = true
     options.each_key do |k|
       raise "'#{k}' is an invalid httperf param" unless params.keys.include?(k)
     end
@@ -84,7 +88,11 @@ class HTTPerf
       status = wait_thr.value
     end
     if status == 0
-      return out.join
+      if @parse
+        return Parser.parse(out.join)
+      else
+        return out.join
+      end
     else
       return err.join
     end
@@ -100,7 +108,11 @@ class HTTPerf
 
   # return results of last fork
   def fork_out
-    @fork_out
+    if @parse
+      return Parse.parse @fork_out
+    else
+      return @fork_out
+    end
   end
 
   # return errors from last fork

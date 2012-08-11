@@ -1,6 +1,11 @@
 HTTPerf.rb
 ==========
 
+### 0.2.0
+
+* added parser
+* changed default output of run to parsed
+
 ### 0.1.2
 
 * fixed an issue with run output
