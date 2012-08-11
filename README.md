@@ -1,7 +1,7 @@
 HTTPERF.rb
 ==========
 
-### [Documentation](http://rubyops.github.com/httperfrb/doc/) | [Coverage](http://rubyops.github.com/httperfrb/coverage/) 
+### [Documentation](http://rubyops.github.com/httperfrb/doc/) | [Coverage](http://rubyops.github.com/httperfrb/coverage/) | [RSpec Out](http://github.com/rubyops/httperfrb/RSPECOUT.md)
 
 Simple Ruby interface for httperf.
 
@@ -10,28 +10,27 @@ Simple Ruby interface for httperf.
 This currently needs a lot of work to be production ready. It's done more in a scripting style then a true solid application style. 
 
 
-
-### Installing 'httperf'
+## Installing 'httperf'
 
 Requires httperf, of course...
 
-##### Mac
+#### Mac
 
     sudo port install httperf
 
-##### Debian / Ubuntu
+#### Debian / Ubuntu
 
     sudo apt-get install httperf
 
-##### Redhat / CentOS
+#### Redhat / CentOS
 
     sudo yum install httperf
 
-#### Install
+## Install
 
     gem install httperfrb
 
-### Usage
+## Usage - HTTPerf
 
 Some basic usage examples.
 
@@ -49,7 +48,7 @@ Some basic usage examples.
       puts perf.fork_out
     end
 
-#### With HTTPerf::Parser
+### With HTTPerf::Parser
 
     require 'httperf'
     perf = HTTPerf.new( "server" => "host", "port" => 8080, "uri" => "/foo" )
@@ -59,6 +58,17 @@ Some basic usage examples.
     # or directly
 
     puts HTTPerf::Parser.parse( HTTPerf.new( "server" => "host", "port" => 8080, "uri" => "/foo" ).run )
+
+## Useage - HTTPerf::Parser
+
+    require 'httperf/parser' 
+     
+    # read result from a file, for example   
+    puts HTTPerf.parse( File.open("httperf.out", "r").read )
+    
+    # or verbose output
+    puts HTTPerf.parse( File.open("httperf_verbose.out", "r").read, true )
+
 
 ##### Parser Keys: 
 
@@ -114,3 +124,11 @@ Some basic usage examples.
     :errors_other
   
 
+##### Addtional Verbose Parser Keys: 
+
+    :connection_time_75_pct
+    :connection_time_80_pct
+    :connection_time_85_pct
+    :connection_time_90_pct
+    :connection_time_95_pct
+    :connection_time_99_pct

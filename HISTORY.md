@@ -1,6 +1,11 @@
 HTTPerf.rb
 ==========
 
+### 0.2.1 
+
+* added verbose handling
+* refactored parser a bit
+
 ### 0.2.0
 
 * added parser
