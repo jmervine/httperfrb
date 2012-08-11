@@ -68,6 +68,19 @@ Some basic usage examples.
     
     # or verbose output
     puts HTTPerf.parse( File.open("httperf_verbose.out", "r").read, true )
+    
+#### From the command line:
+
+Something I've been playing around with, it's more of hack really. But it works well for seralizing output to YAML or JSON:
+
+##### To JSON file:
+
+    httperf --num-conns=10 --verbose | ruby -e 'require "httperf/parser"; require "json"; puts HTTPerf::Parser.parse(ARGF.read).to_json' > httperf.json
+
+##### To YAML file:
+
+    httperf --num-conns=10 --verbose | ruby -e 'require "httperf/parser"; require "yaml"; puts HTTPerf::Parser.parse(ARGF.read).to_yaml' > httperf.yml
+
 
 
 ##### Parser Keys: 
