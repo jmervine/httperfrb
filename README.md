@@ -5,10 +5,6 @@ HTTPERF.rb
 
 Simple Ruby interface for httperf.
 
-### Known Issues
-
-* Verbose handling isn't parsing correctly, but should not cause errors either.
-
 ## Installing 'httperf'
 
 Requires httperf, of course...
