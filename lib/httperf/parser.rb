@@ -9,11 +9,14 @@ class HTTPerf
     # @param [String] raw httperf output
     def self.parse raw
 
-      verbose = false
       lines = raw.split("\n") 
       matches = {}
 
       # for verbose matching
+      # this only works if httperf output is
+      # generated using my version of httperf
+      # see: https://github.com/rubyops/httperf
+      verbose = false
       verbose_connection_times = []
 
       lines.each do |line|
@@ -142,6 +145,7 @@ class HTTPerf
       }
     end
 
+    # everything below is for verbose mode
     def self.percentiles
       [ 75, 80, 85, 90, 95, 99 ]
     end

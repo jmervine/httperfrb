@@ -4,7 +4,11 @@ describe HTTPerf, "basic usage" do
     expect { HTTPerf.new }.to_not raise_error
   end
   it "should use path if set" do
-    HTTPerf.new($good_params,"/usr/bin/httperf").command.should eq "/usr/bin/httperf --port=8080 --server=localhost --uri=/foo/bar "
+    begin
+      HTTPerf.new($good_params,"/usr/bin/httperf").command.should eq "/usr/bin/httperf --port=8080 --server=localhost --uri=/foo/bar "
+    rescue RuntimeError=>e
+      e.to_s.should match /\/usr\/bin\/httperf/
+    end
   end
   it "should init with good params" do 
     expect { HTTPerf.new($good_params) }.to_not raise_error
@@ -22,7 +26,8 @@ describe HTTPerf, "basic usage" do
     expect { HTTPerf.new($bad_params) }.to raise_error
   end
   it "should build command correctly" do 
-    HTTPerf.new($good_params).command.should eq "/usr/bin/httperf --port=8080 --server=localhost --uri=/foo/bar "
+    httperf = %x{ which httperf }.chomp
+    HTTPerf.new($good_params).command.should eq "#{httperf} --port=8080 --server=localhost --uri=/foo/bar "
   end
 end
 
@@ -37,10 +42,11 @@ end
 
 describe HTTPerf, "#update_option" do
   it "should update an option" do
+    httperf = %x{ which httperf }.chomp
     perf = HTTPerf.new($good_params)
-    perf.command.should eq "/usr/bin/httperf --port=8080 --server=localhost --uri=/foo/bar "
+    perf.command.should eq "#{httperf} --port=8080 --server=localhost --uri=/foo/bar "
     perf.update_option("port", 9001)
-    perf.command.should eq "/usr/bin/httperf --port=9001 --server=localhost --uri=/foo/bar "
+    perf.command.should eq "#{httperf} --port=9001 --server=localhost --uri=/foo/bar "
   end
 end
 
