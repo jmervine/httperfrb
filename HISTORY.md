@@ -1,6 +1,11 @@
 HTTPerf.rb
 ==========
 
+
+### 0.3.0
+
+* added handling for [HTTPerf::Grapher](http://github.com/rubyops/httperfrb-grapher)
+
 ### 0.2.1 
 
 * added verbose handling

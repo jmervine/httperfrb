@@ -92,5 +92,5 @@
 		  should set output to #fork_out
 		  should set errors to #fork_err
 		
-		Finished in 0.26845 seconds
+		Finished in 0.26562 seconds
 		75 examples, 0 failures

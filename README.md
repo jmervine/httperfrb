@@ -5,10 +5,9 @@ HTTPERF.rb
 
 Simple Ruby interface for httperf.
 
-#### Note
+### Note
 
-This currently needs a lot of work to be production ready. It's done more in a scripting style then a true solid application style. 
-
+Also see: [HTTPerf::Grapher](http://github.com/rubyops/httperfrb-grapher)
 
 ## Installing 'httperf'
 
@@ -145,3 +144,4 @@ Something I've been playing around with, it's more of hack really. But it works 
     :connection_time_90_pct
     :connection_time_95_pct
     :connection_time_99_pct
+
