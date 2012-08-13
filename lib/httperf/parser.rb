@@ -9,19 +9,23 @@ class HTTPerf
     # @param [String] raw httperf output
     def self.parse raw
 
-      verbose = false
       lines = raw.split("\n") 
       matches = {}
 
+      # NOTE: commenting out all verbose handling, as the parsed
+      # strings do not exist in standard httperf. This code was 
+      # based off of a custom hacked version.
+      #
       # for verbose matching
-      verbose_connection_times = []
+      #verbose = false
+      #verbose_connection_times = []
 
       lines.each do |line|
 
-        if verbose_expression.match(line)
-          verbose_connection_times.push($1) 
-          next
-        end
+        #if verbose_expression.match(line)
+          #verbose_connection_times.push($1) 
+          #next
+        #end
 
         matched = false
         unless line.empty?
@@ -35,28 +39,28 @@ class HTTPerf
         end
       end
 
-      unless verbose_connection_times.empty?
-        percentiles.each do |percentile|
-          matches["connection_time_#{percentile}_pct".to_sym] = calculate_percentile(percentile, verbose_connection_times)
-        end
-        matches[:connection_times] = verbose_connection_times
-        verbose = true
-      end
+      #unless verbose_connection_times.empty?
+        #percentiles.each do |percentile|
+          #matches["connection_time_#{percentile}_pct".to_sym] = calculate_percentile(percentile, verbose_connection_times)
+        #end
+        #matches[:connection_times] = verbose_connection_times
+        #verbose = true
+      #end
 
-      if verbose
-        raise "mismatch error occurred" unless expressions.keys.count+percentiles.count+1 == matches.keys.count
-      else
+      #if verbose
+        #raise "mismatch error occurred" unless expressions.keys.count+percentiles.count+1 == matches.keys.count
+      #else
         raise "mismatch error occurred" unless expressions.keys.count == matches.keys.count
-      end
+      #end
 
       return matches
     end
 
     protected
 
-    def self.verbose_expression
-      /^Connection lifetime = ([0-9]*?\.?[0-9]+)$/
-    end
+    #def self.verbose_expression
+      #/^Connection lifetime = ([0-9]*?\.?[0-9]+)$/
+    #end
 
     def self.expressions
       # While this isn't the most efficent way of doing this, it's the most maintainable.
@@ -142,19 +146,19 @@ class HTTPerf
       }
     end
 
-    def self.percentiles
-      [ 75, 80, 85, 90, 95, 99 ]
-    end
+    #def self.percentiles
+      #[ 75, 80, 85, 90, 95, 99 ]
+    #end
 
-    private
-    def self.calculate_percentile percentile, values
-      v = values.sort
-      v[percentile_index(percentile, values.count)]
-    end
+    #private
+    #def self.calculate_percentile percentile, values
+      #v = values.sort
+      #v[percentile_index(percentile, values.count)]
+    #end
 
-    def self.percentile_index percentile, count
-      ((count/100)*percentile)-1
-    end
+    #def self.percentile_index percentile, count
+      #((count/100)*percentile)-1
+    #end
   end
 end
 
