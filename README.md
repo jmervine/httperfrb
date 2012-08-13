@@ -7,7 +7,7 @@ Simple Ruby interface for httperf.
 
 ### Known Issues
 
-* Verbose handling isn't working correctly, but should not cause errors either.
+* Verbose handling isn't parsing correctly, but should not cause errors either.
 
 ## Installing 'httperf'
 
