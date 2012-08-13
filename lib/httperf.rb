@@ -1,12 +1,18 @@
 # @author Joshua Mervine <joshua@mervine.net>
+$:.unshift File.dirname(__FILE__)
 require 'open4'
 require 'httperf/parser'
-require 'httperf/grapher'
 require 'httperf/version'
+
+begin 
+  require 'httperf/grapher'
+rescue LoadError
+end
+
 class HTTPerf
 
   # @return [Boolean] parse flag
-  attr_accessor :parse, :verbose
+  attr_accessor :parse
 
   # availbe instance methods
   @fork_out, @fork_err = ''
@@ -58,7 +64,6 @@ class HTTPerf
   #   -  wset
   def initialize options={}, path=nil
     self.parse = options.delete("parse") 
-    self.verbose = true if options.has_key?("verbose")
     options.each_key do |k|
       raise "'#{k}' is an invalid httperf param" unless params.keys.include?(k)
     end
@@ -91,7 +96,7 @@ class HTTPerf
     end
     if status == 0
       if @parse
-        return Parser.parse(out.join, self.verbose)
+        return Parser.parse(out.join)
       else
         return out.join
       end
@@ -126,10 +131,6 @@ class HTTPerf
   # - for debugging and testing
   def command 
     return "#{@command} #{options}"
-  end
-
-  def verbose
-    @verbose||false
   end
 
   private

@@ -61,7 +61,7 @@ describe HTTPerf::Parser do
 end
 describe HTTPerf::Parser, "with verbose" do
   it "should parse raw data" do
-    HTTPerf::Parser.parse($verbose_raw, true).keys.count.should eq 56
+    HTTPerf::Parser.parse($verbose_raw).keys.count.should eq 57
   end
   {
     :connection_time_75_pct=>"294.5",
@@ -72,8 +72,11 @@ describe HTTPerf::Parser, "with verbose" do
 		:connection_time_99_pct=>"688.5"
   }.each do |key,val|
     it "should parse verbose correctly -- #{key}" do
-      HTTPerf::Parser.parse($verbose_raw, true)[key].should eq val
-      #p HTTPerf::Parser.parse($verbose_raw, true)[key]#.should eq val
+      HTTPerf::Parser.parse($verbose_raw)[key].should eq val
     end
+  end
+  it "should have :connection_times Array" do
+    HTTPerf::Parser.parse($verbose_raw)[:connection_times].should be_an Array
+    HTTPerf::Parser.parse($verbose_raw)[:connection_times].count.should eq 100
   end
 end
