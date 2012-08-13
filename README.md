@@ -1,4 +1,4 @@
-HTTPERF.rb
+HTTPerf.rb
 ==========
 
 ### [Documentation](http://rubyops.github.com/httperfrb/doc/) | [Coverage](http://rubyops.github.com/httperfrb/coverage/) | [RSpec Out](https://github.com/rubyops/httperfrb/blob/master/RSPECOUT.md)
