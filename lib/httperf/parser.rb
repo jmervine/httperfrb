@@ -1,4 +1,3 @@
-#require 'parser/verbose'
 class HTTPerf
 
   # Parse httperf output to a [Hash]
@@ -6,22 +5,20 @@ class HTTPerf
   # This can be used standalone or with HTTPerf results.
   class Parser
 
-    attr_accessor :verbose
-
     # @return [Hash] returns hash of parsed httperf output
     # @param [String] raw httperf output
-    def self.parse raw, verbose=false
+    def self.parse raw, verbose=false, grapher=false
 
       lines = raw.split("\n") 
       matches = {}
 
       # for verbose matching
-      verbose_connection_lifetime = []
+      verbose_connection_times = []
 
       lines.each do |line|
 
         if verbose and verbose_expression.match(line)
-          verbose_connection_lifetime.push($1) 
+          verbose_connection_times.push($1) 
           next
         end
 
@@ -37,9 +34,9 @@ class HTTPerf
         end
       end
 
-      unless verbose_connection_lifetime.empty?
+      unless verbose_connection_times.empty?
         percentiles.each do |percentile|
-          matches["connection_time_#{percentile}_pct".to_sym] = calculate_percentile(percentile, verbose_connection_lifetime)
+          matches["connection_time_#{percentile}_pct".to_sym] = calculate_percentile(percentile, verbose_connection_times)
         end
       end
 
@@ -48,6 +45,11 @@ class HTTPerf
       else
         raise "mismatch error occurred" unless expressions.keys.count == matches.keys.count
       end
+
+      if grapher
+        matches[:connection_times] = verbose_connection_times
+      end
+
       return matches
     end
 
@@ -147,8 +149,8 @@ class HTTPerf
 
     private
     def self.calculate_percentile percentile, values
-      values.sort!
-      values[percentile_index(percentile, values.count)]
+      v = values.sort
+      v[percentile_index(percentile, values.count)]
     end
 
     def self.percentile_index percentile, count

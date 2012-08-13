@@ -1,6 +1,7 @@
 # @author Joshua Mervine <joshua@mervine.net>
 require 'open4'
 require 'httperf/parser'
+require 'httperf/grapher'
 require 'httperf/version'
 class HTTPerf
 
