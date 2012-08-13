@@ -23,6 +23,8 @@ Gem::Specification.new do |s|
   s.add_dependency "open4"
   s.add_dependency "rmagick", "~>2.13.1"
   s.add_dependency "gruff", "~>0.3.6"
+  #s.requirements << "rmagick version ~>2.13.1"
+  #s.requirements << "gruff version ~>0.3.6"
 
   s.files        = Dir.glob("lib/**/*") + %w(README.md HISTORY.md Gemfile)
   s.require_path = 'lib'

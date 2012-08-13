@@ -91,6 +91,18 @@
 		  should set output to #fork_out
 		  should set errors to #fork_err
 		
-		Finished in 0.25292 seconds
-		74 examples, 0 failures
-		Coverage report generated for RSpec to /home/jmervine/Development/httperfrb/coverage. 93 / 94 LOC (98.94%) covered.
+		HTTPerf::Grapher
+		  #new
+		    should initialize empty
+		    should initialize with params
+		    should set params from passed Hash
+		  #output_file
+		    should set output file
+		  #graph_settings
+		    should merge graph settings
+		  #graph
+		    should create a graph
+		
+		Finished in 0.51946 seconds
+		80 examples, 0 failures
+		Coverage report generated for RSpec to /home/jmervine/Development/httperfrb/coverage. 126 / 129 LOC (97.67%) covered.
