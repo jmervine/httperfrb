@@ -1,6 +1,9 @@
 HTTPerf.rb
 ==========
 
+### 0.3.1
+
+* fixing verbose bug
 
 ### 0.3.0
 
