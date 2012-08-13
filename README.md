@@ -5,9 +5,9 @@ HTTPERF.rb
 
 Simple Ruby interface for httperf.
 
-### Note
+### Known Issues
 
-Also see: [HTTPerf::Grapher](http://github.com/rubyops/httperfrb-grapher)
+* Verbose handling isn't working correctly, but should not cause errors either.
 
 ## Installing 'httperf'
 
