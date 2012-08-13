@@ -140,6 +140,8 @@ class HTTPerf
     @options.each do |key,val|
       opts << "--#{key}=#{val} " unless val.nil?
     end
+    opts.gsub!("--verbose=true", "--verbose")
+    opts.gsub!("--verbose=false", "")
     opts
   end
 
