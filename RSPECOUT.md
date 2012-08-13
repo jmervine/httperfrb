@@ -60,6 +60,7 @@
 		  should parse verbose correctly -- connection_time_90_pct
 		  should parse verbose correctly -- connection_time_95_pct
 		  should parse verbose correctly -- connection_time_99_pct
+		  should have :connection_times Array
 		
 		HTTPerf basic usage
 		  should init empty
@@ -91,18 +92,6 @@
 		  should set output to #fork_out
 		  should set errors to #fork_err
 		
-		HTTPerf::Grapher
-		  #new
-		    should initialize empty
-		    should initialize with params
-		    should set params from passed Hash
-		  #output_file
-		    should set output file
-		  #graph_settings
-		    should merge graph settings
-		  #graph
-		    should create a graph
-		
-		Finished in 0.51946 seconds
-		80 examples, 0 failures
-		Coverage report generated for RSpec to /home/jmervine/Development/httperfrb/coverage. 126 / 129 LOC (97.67%) covered.
+		Finished in 0.26698 seconds
+		75 examples, 0 failures
+		Coverage report generated for RSpec to /home/jmervine/Development/httperfrb/coverage. 96 / 98 LOC (97.96%) covered.

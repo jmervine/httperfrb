@@ -7,8 +7,9 @@ class HTTPerf
 
     # @return [Hash] returns hash of parsed httperf output
     # @param [String] raw httperf output
-    def self.parse raw, verbose=false, grapher=false
+    def self.parse raw
 
+      verbose = false
       lines = raw.split("\n") 
       matches = {}
 
@@ -17,7 +18,7 @@ class HTTPerf
 
       lines.each do |line|
 
-        if verbose and verbose_expression.match(line)
+        if verbose_expression.match(line)
           verbose_connection_times.push($1) 
           next
         end
@@ -38,16 +39,14 @@ class HTTPerf
         percentiles.each do |percentile|
           matches["connection_time_#{percentile}_pct".to_sym] = calculate_percentile(percentile, verbose_connection_times)
         end
+        matches[:connection_times] = verbose_connection_times
+        verbose = true
       end
 
       if verbose
-        raise "mismatch error occurred" unless expressions.keys.count+percentiles.count == matches.keys.count
+        raise "mismatch error occurred" unless expressions.keys.count+percentiles.count+1 == matches.keys.count
       else
         raise "mismatch error occurred" unless expressions.keys.count == matches.keys.count
-      end
-
-      if grapher
-        matches[:connection_times] = verbose_connection_times
       end
 
       return matches

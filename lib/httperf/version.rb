@@ -1,4 +1,4 @@
 class HTTPerf
-  VERSION = "0.3.0pre1"
+  VERSION = "0.3.0pre2"
 end
 
