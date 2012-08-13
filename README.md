@@ -25,7 +25,7 @@ Requires httperf, of course...
 
     sudo yum install httperf
     
-#### My Version
+#### My 'httperf'
 
 See: [httperf-0.9.1 with individual connection times](http://www.rubyops.net/2012/08/13/httperf-0_9_1_with_individual_connection_times).
 
