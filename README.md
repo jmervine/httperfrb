@@ -51,7 +51,7 @@ Some basic usage examples.
 
     require 'httperf'
     perf = HTTPerf.new( "server" => "host", "port" => 8080, "uri" => "/foo" )
-    puts perf.parser = true
+    puts perf.parse = true
     puts perf.run
 
     # or directly
@@ -63,10 +63,10 @@ Some basic usage examples.
     require 'httperf/parser' 
      
     # read result from a file, for example   
-    puts HTTPerf.parse( File.open("httperf.out", "r").read )
+    puts HTTPerf::Parser.parse( File.open("httperf.out", "r").read )
     
     # or verbose output
-    puts HTTPerf.parse( File.open("httperf_verbose.out", "r").read, true )
+    puts HTTPerf::Parser.parse( File.open("httperf_verbose.out", "r").read, true )
     
 #### From the command line:
 
