@@ -131,13 +131,3 @@ Something I've been playing around with, it's more of hack really. But it works 
     :errors_ftab_full
     :errors_other
   
-
-##### Addtional Verbose Parser Keys: 
-
-    :connection_time_75_pct
-    :connection_time_80_pct
-    :connection_time_85_pct
-    :connection_time_90_pct
-    :connection_time_95_pct
-    :connection_time_99_pct
-
