@@ -1,6 +1,11 @@
 HTTPerf.rb
 ==========
 
+### 0.3.5
+
+* fixing bug with parsing verbose output
+* fixing bug with generating percentiles when less then 100 tests
+
 ### 0.3.3
 
 * adding limited grapher handling back

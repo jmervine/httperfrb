@@ -58,7 +58,7 @@ class HTTPerf
     protected
 
     def self.verbose_expression
-      /^Connection lifetime = ([0-9]*?\.?[0-9]+)$/
+      /^Connection lifetime = ([0-9]+\.[0-9]+)(\s?)/
     end
 
     def self.expressions
@@ -152,13 +152,16 @@ class HTTPerf
 
     private
     def self.calculate_percentile percentile, values
-      v = values.sort
-      v[percentile_index(percentile, values.count)]
+      case values.count
+      when 1
+        values.first
+      when 2
+        values.last
+      else
+        values.sort[((values.count.to_f/100)*percentile.to_f).round(0)-1] 
+      end
     end
 
-    def self.percentile_index percentile, count
-      ((count/100)*percentile)-1
-    end
   end
 end
 
