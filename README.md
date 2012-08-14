@@ -1,4 +1,4 @@
-HTTPERF.rb
+HTTPerf.rb
 ==========
 
 ### [Documentation](http://rubyops.github.com/httperfrb/doc/) | [Coverage](http://rubyops.github.com/httperfrb/coverage/) | [RSpec Out](https://github.com/rubyops/httperfrb/blob/master/RSPECOUT.md)
@@ -20,6 +20,10 @@ Requires httperf, of course...
 #### Redhat / CentOS
 
     sudo yum install httperf
+    
+#### My 'httperf'
+
+See: [httperf-0.9.1 with individual connection times](http://www.rubyops.net/2012/08/13/httperf-0_9_1_with_individual_connection_times).
 
 ## Install
 

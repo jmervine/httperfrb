@@ -1,6 +1,10 @@
 HTTPerf.rb
 ==========
 
+### 0.3.3
+
+* adding limited grapher handling back
+
 ### 0.3.2
 
 * removed all grapher and verbose handling, as it isn't working as expected

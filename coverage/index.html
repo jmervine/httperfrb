@@ -23,27 +23,27 @@
       <img src="./assets/0.5.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2012-08-13T14:29:52-07:00">2012-08-13T14:29:52-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2012-08-13T17:00:06-07:00">2012-08-13T17:00:06-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="green">97.3%</span></span>
+    (<span class="covered_percent"><span class="green">92.86%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         1603.95
+         1034.4
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>2</b> files in total.
-    <b>74</b> relevant lines. 
-    <span class="green"><b>72</b> lines covered</span> and
-    <span class="red"><b>2</b> lines missed </span>
+    <b>84</b> relevant lines. 
+    <span class="green"><b>78</b> lines covered</span> and
+    <span class="red"><b>6</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -66,17 +66,17 @@
         <td>56</td>
         <td>54</td>
         <td>2</td>
-        <td>9.8</td>
+        <td>9.0</td>
       </tr>
       
       <tr>
         <td class="strong"><a href="#f12dc9658b90c314743f2a491bec2e6551257ccb" class="src_link" title="lib/httperf/parser.rb">lib/httperf/parser.rb</a></td>
-        <td class="green strong">100.0 %</td>
-        <td>115</td>
-        <td>18</td>
-        <td>18</td>
-        <td>0</td>
-        <td>3198.1</td>
+        <td class="yellow strong">85.71 %</td>
+        <td>138</td>
+        <td>28</td>
+        <td>24</td>
+        <td>4</td>
+        <td>2059.8</td>
       </tr>
       
     </tbody>
@@ -871,8 +871,8 @@
           <code class="ruby">  def command </code>
         </li>
       
-        <li class="covered" data-hits="8" data-linenumber="128">
-          <span class="hits">8</span>
+        <li class="covered" data-hits="7" data-linenumber="128">
+          <span class="hits">7</span>
           
           <code class="ruby">    return &quot;#{@command} #{options}&quot;</code>
         </li>
@@ -907,20 +907,20 @@
           <code class="ruby">  def options</code>
         </li>
       
-        <li class="covered" data-hits="8" data-linenumber="134">
-          <span class="hits">8</span>
+        <li class="covered" data-hits="7" data-linenumber="134">
+          <span class="hits">7</span>
           
           <code class="ruby">    opts = &quot;&quot;</code>
         </li>
       
-        <li class="covered" data-hits="8" data-linenumber="135">
-          <span class="hits">8</span>
+        <li class="covered" data-hits="7" data-linenumber="135">
+          <span class="hits">7</span>
           
           <code class="ruby">    @options.each do |key,val|</code>
         </li>
       
-        <li class="covered" data-hits="296" data-linenumber="136">
-          <span class="hits">296</span>
+        <li class="covered" data-hits="259" data-linenumber="136">
+          <span class="hits">259</span>
           
           <code class="ruby">      opts &lt;&lt; &quot;--#{key}=#{val} &quot; unless val.nil?</code>
         </li>
@@ -931,20 +931,20 @@
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="8" data-linenumber="138">
-          <span class="hits">8</span>
+        <li class="covered" data-hits="7" data-linenumber="138">
+          <span class="hits">7</span>
           
           <code class="ruby">    opts.gsub!(&quot;--verbose=true&quot;, &quot;--verbose&quot;)</code>
         </li>
       
-        <li class="covered" data-hits="8" data-linenumber="139">
-          <span class="hits">8</span>
+        <li class="covered" data-hits="7" data-linenumber="139">
+          <span class="hits">7</span>
           
           <code class="ruby">    opts.gsub!(&quot;--verbose=false&quot;, &quot;&quot;)</code>
         </li>
       
-        <li class="covered" data-hits="8" data-linenumber="140">
-          <span class="hits">8</span>
+        <li class="covered" data-hits="7" data-linenumber="140">
+          <span class="hits">7</span>
           
           <code class="ruby">    opts</code>
         </li>
@@ -1238,11 +1238,11 @@
         <div class="source_table" id="f12dc9658b90c314743f2a491bec2e6551257ccb">
   <div class="header">
     <h3>lib/httperf/parser.rb</h3>
-    <h4><span class="green">100.0 %</span> covered</h4>
+    <h4><span class="yellow">85.71 %</span> covered</h4>
     <div>
-      <b>18</b> relevant lines. 
-      <span class="green"><b>18</b> lines covered</span> and
-      <span class="red"><b>0</b> lines missed.</span>
+      <b>28</b> relevant lines. 
+      <span class="green"><b>24</b> lines covered</span> and
+      <span class="red"><b>4</b> lines missed.</span>
     </div>
   </div>
   
@@ -1321,256 +1321,256 @@
           <code class="ruby">      matches = {}</code>
         </li>
       
-        <li class="covered" data-hits="52" data-linenumber="13">
+        <li class="never" data-hits="" data-linenumber="13">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="14">
+          
+          
+          <code class="ruby">      # for verbose matching</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="15">
+          
+          
+          <code class="ruby">      # this only works if httperf output is</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="16">
+          
+          
+          <code class="ruby">      # generated using my version of httperf</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="17">
+          
+          
+          <code class="ruby">      # see: https://github.com/rubyops/httperf</code>
+        </li>
+      
+        <li class="covered" data-hits="52" data-linenumber="18">
+          <span class="hits">52</span>
+          
+          <code class="ruby">      verbose = false</code>
+        </li>
+      
+        <li class="covered" data-hits="52" data-linenumber="19">
+          <span class="hits">52</span>
+          
+          <code class="ruby">      verbose_connection_times = []</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="20">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="52" data-linenumber="21">
           <span class="hits">52</span>
           
           <code class="ruby">      lines.each do |line|</code>
         </li>
       
-        <li class="covered" data-hits="1247" data-linenumber="14">
+        <li class="covered" data-hits="1247" data-linenumber="22">
           <span class="hits">1247</span>
           
           <code class="ruby">        matched = false</code>
         </li>
       
-        <li class="covered" data-hits="1247" data-linenumber="15">
+        <li class="covered" data-hits="1247" data-linenumber="23">
           <span class="hits">1247</span>
           
           <code class="ruby">        unless line.empty?</code>
         </li>
       
-        <li class="covered" data-hits="935" data-linenumber="16">
+        <li class="covered" data-hits="935" data-linenumber="24">
           <span class="hits">935</span>
           
           <code class="ruby">          next if matched</code>
         </li>
       
-        <li class="covered" data-hits="935" data-linenumber="17">
+        <li class="covered" data-hits="935" data-linenumber="25">
           <span class="hits">935</span>
           
           <code class="ruby">          expressions.each do |key,exp|</code>
         </li>
       
-        <li class="covered" data-hits="46750" data-linenumber="18">
+        <li class="covered" data-hits="46750" data-linenumber="26">
           <span class="hits">46750</span>
           
           <code class="ruby">            if exp.match(line) and $1</code>
         </li>
       
-        <li class="covered" data-hits="2600" data-linenumber="19">
+        <li class="covered" data-hits="2600" data-linenumber="27">
           <span class="hits">2600</span>
           
           <code class="ruby">              matches[key] = $1</code>
         </li>
       
-        <li class="covered" data-hits="2600" data-linenumber="20">
+        <li class="covered" data-hits="2600" data-linenumber="28">
           <span class="hits">2600</span>
           
           <code class="ruby">              matched = true</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="21">
+        <li class="never" data-hits="" data-linenumber="29">
           
           
           <code class="ruby">            end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="22">
+        <li class="never" data-hits="" data-linenumber="30">
           
           
           <code class="ruby">          end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="23">
+        <li class="never" data-hits="" data-linenumber="31">
           
           
           <code class="ruby">        end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="24">
+        <li class="never" data-hits="" data-linenumber="32">
           
           
           <code class="ruby">      end</code>
         </li>
       
-        <li class="covered" data-hits="52" data-linenumber="25">
+        <li class="covered" data-hits="52" data-linenumber="33">
           <span class="hits">52</span>
           
           <code class="ruby">      raise &quot;mismatch error occurred&quot; unless expressions.keys.count == matches.keys.count</code>
         </li>
       
-        <li class="covered" data-hits="52" data-linenumber="26">
+        <li class="covered" data-hits="52" data-linenumber="34">
           <span class="hits">52</span>
           
           <code class="ruby">      return matches</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="27">
+        <li class="never" data-hits="" data-linenumber="35">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="28">
+        <li class="never" data-hits="" data-linenumber="36">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="29">
+        <li class="covered" data-hits="1" data-linenumber="37">
           <span class="hits">1</span>
           
           <code class="ruby">    protected</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="30">
+        <li class="covered" data-hits="1" data-linenumber="38">
           <span class="hits">1</span>
           
           <code class="ruby">    def self.expressions</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="31">
+        <li class="never" data-hits="" data-linenumber="39">
           
           
           <code class="ruby">      # While this isn't the most efficent way of doing this, it's the most maintainable.</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="32">
+        <li class="never" data-hits="" data-linenumber="40">
           
           
           <code class="ruby">      {</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="33">
+        <li class="never" data-hits="" data-linenumber="41">
           
           
           <code class="ruby">        :command                    =&gt; /^(httperf .+)$/,</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="34">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="35">
-          
-          
-          <code class="ruby">        # Maximum connect burst length:</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="36">
-          
-          
-          <code class="ruby">        :max_connect_burst_length   =&gt; /Maximum connect burst length: ([0-9]*?\.?[0-9]+)$/,</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="37">
-          
-          
-          <code class="ruby">        </code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="38">
-          
-          
-          <code class="ruby">        # Total:</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="39">
-          
-          
-          <code class="ruby">        :total_connections          =&gt; /^Total: connections ([0-9]*?\.?[0-9]+) /,</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="40">
-          
-          
-          <code class="ruby">        :total_requests             =&gt; /^Total: connections .+ requests ([0-9]*?\.?[0-9]+) /,</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="41">
-          
-          
-          <code class="ruby">        :total_replies              =&gt; /^Total: connections .+ replies ([0-9]*?\.?[0-9]+) /,</code>
-        </li>
-      
         <li class="never" data-hits="" data-linenumber="42">
           
           
-          <code class="ruby">        :total_test_duration        =&gt; /^Total: connections .+ test-duration ([0-9]*?\.?[0-9]+) /,</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="43">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">        # Maximum connect burst length:</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="44">
           
           
-          <code class="ruby">        # Connection rate:</code>
+          <code class="ruby">        :max_connect_burst_length   =&gt; /Maximum connect burst length: ([0-9]*?\.?[0-9]+)$/,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="45">
           
           
-          <code class="ruby">        :connection_rate_per_sec    =&gt; /^Connection rate: ([0-9]*?\.?[0-9]+) /, </code>
+          <code class="ruby">        </code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="46">
           
           
-          <code class="ruby">        :connection_rate_ms_conn    =&gt; /^Connection rate: .+ \(([0-9]*?\.?[0-9]+) ms/, </code>
+          <code class="ruby">        # Total:</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="47">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">        :total_connections          =&gt; /^Total: connections ([0-9]*?\.?[0-9]+) /,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="48">
           
           
-          <code class="ruby">        # Connection time [ms]:</code>
+          <code class="ruby">        :total_requests             =&gt; /^Total: connections .+ requests ([0-9]*?\.?[0-9]+) /,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="49">
           
           
-          <code class="ruby">        :connection_time_min        =&gt; /^Connection time \[ms\]: min ([0-9]*?\.?[0-9]+) /, </code>
+          <code class="ruby">        :total_replies              =&gt; /^Total: connections .+ replies ([0-9]*?\.?[0-9]+) /,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="50">
           
           
-          <code class="ruby">        :connection_time_avg        =&gt; /^Connection time \[ms\]: min .+ avg ([0-9]*?\.?[0-9]+) /, </code>
+          <code class="ruby">        :total_test_duration        =&gt; /^Total: connections .+ test-duration ([0-9]*?\.?[0-9]+) /,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="51">
           
           
-          <code class="ruby">        :connection_time_max        =&gt; /^Connection time \[ms\]: min .+ max ([0-9]*?\.?[0-9]+) /, </code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="52">
           
           
-          <code class="ruby">        :connection_time_median     =&gt; /^Connection time \[ms\]: min .+ median ([0-9]*?\.?[0-9]+) /, </code>
+          <code class="ruby">        # Connection rate:</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="53">
           
           
-          <code class="ruby">        :connection_time_stddev     =&gt; /^Connection time \[ms\]: min .+ stddev ([0-9]*?\.?[0-9]+)$/, </code>
+          <code class="ruby">        :connection_rate_per_sec    =&gt; /^Connection rate: ([0-9]*?\.?[0-9]+) /, </code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="54">
           
           
-          <code class="ruby">        :connection_time_connect    =&gt; /^Connection time \[ms\]: connect ([0-9]*?\.?[0-9]+)$/,</code>
+          <code class="ruby">        :connection_rate_ms_conn    =&gt; /^Connection rate: .+ \(([0-9]*?\.?[0-9]+) ms/, </code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="55">
@@ -1582,358 +1582,496 @@
         <li class="never" data-hits="" data-linenumber="56">
           
           
-          <code class="ruby">        # Connection length [replies/conn]:</code>
+          <code class="ruby">        # Connection time [ms]:</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="57">
           
           
-          <code class="ruby">        :connection_length          =&gt; /^Connection length \[replies\/conn\]: ([0-9]*?\.?[0-9]+)$/,</code>
+          <code class="ruby">        :connection_time_min        =&gt; /^Connection time \[ms\]: min ([0-9]*?\.?[0-9]+) /, </code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="58">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">        :connection_time_avg        =&gt; /^Connection time \[ms\]: min .+ avg ([0-9]*?\.?[0-9]+) /, </code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="59">
           
           
-          <code class="ruby">        # Request rate:</code>
+          <code class="ruby">        :connection_time_max        =&gt; /^Connection time \[ms\]: min .+ max ([0-9]*?\.?[0-9]+) /, </code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="60">
           
           
-          <code class="ruby">        :request_rate_per_sec       =&gt; /^Request rate: ([0-9]*?\.?[0-9]+) req/,</code>
+          <code class="ruby">        :connection_time_median     =&gt; /^Connection time \[ms\]: min .+ median ([0-9]*?\.?[0-9]+) /, </code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="61">
           
           
-          <code class="ruby">        :request_rate_ms_request    =&gt; /^Request rate: .+ \(([0-9]*?\.?[0-9]+) ms/,</code>
+          <code class="ruby">        :connection_time_stddev     =&gt; /^Connection time \[ms\]: min .+ stddev ([0-9]*?\.?[0-9]+)$/, </code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="62">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">        :connection_time_connect    =&gt; /^Connection time \[ms\]: connect ([0-9]*?\.?[0-9]+)$/,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="63">
           
           
-          <code class="ruby">        # Request size [B]:</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="64">
           
           
-          <code class="ruby">        :request_size               =&gt; /^Request size \[B\]: ([0-9]*?\.?[0-9]+)$/,</code>
+          <code class="ruby">        # Connection length [replies/conn]:</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="65">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">        :connection_length          =&gt; /^Connection length \[replies\/conn\]: ([0-9]*?\.?[0-9]+)$/,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="66">
           
           
-          <code class="ruby">        # Reply rate [replies/s]:</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="67">
           
           
-          <code class="ruby">        :reply_rate_min             =&gt; /^Reply rate \[replies\/s\]: min ([0-9]*?\.?[0-9]+) /,</code>
+          <code class="ruby">        # Request rate:</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="68">
           
           
-          <code class="ruby">        :reply_rate_avg             =&gt; /^Reply rate \[replies\/s\]: min .+ avg ([0-9]*?\.?[0-9]+) /,</code>
+          <code class="ruby">        :request_rate_per_sec       =&gt; /^Request rate: ([0-9]*?\.?[0-9]+) req/,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="69">
           
           
-          <code class="ruby">        :reply_rate_max             =&gt; /^Reply rate \[replies\/s\]: min .+ max ([0-9]*?\.?[0-9]+) /,</code>
+          <code class="ruby">        :request_rate_ms_request    =&gt; /^Request rate: .+ \(([0-9]*?\.?[0-9]+) ms/,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="70">
           
           
-          <code class="ruby">        :reply_rate_stddev          =&gt; /^Reply rate \[replies\/s\]: min .+ stddev ([0-9]*?\.?[0-9]+) /,</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="71">
           
           
-          <code class="ruby">        :reply_rate_samples         =&gt; /^Reply rate \[replies\/s\]: min .+ \(([0-9]*?\.?[0-9]+) samples/,</code>
+          <code class="ruby">        # Request size [B]:</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="72">
           
           
-          <code class="ruby">        </code>
+          <code class="ruby">        :request_size               =&gt; /^Request size \[B\]: ([0-9]*?\.?[0-9]+)$/,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="73">
           
           
-          <code class="ruby">        # Reply time [ms]:</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="74">
           
           
-          <code class="ruby">        :reply_time_response        =&gt; /^Reply time \[ms\]: response ([0-9]*?\.?[0-9]+) /,</code>
+          <code class="ruby">        # Reply rate [replies/s]:</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="75">
           
           
-          <code class="ruby">        :reply_time_transfer        =&gt; /^Reply time \[ms\]: response .+ transfer ([0-9]*?\.?[0-9]+)$/,</code>
+          <code class="ruby">        :reply_rate_min             =&gt; /^Reply rate \[replies\/s\]: min ([0-9]*?\.?[0-9]+) /,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="76">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">        :reply_rate_avg             =&gt; /^Reply rate \[replies\/s\]: min .+ avg ([0-9]*?\.?[0-9]+) /,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="77">
           
           
-          <code class="ruby">        # Reply size [B]:</code>
+          <code class="ruby">        :reply_rate_max             =&gt; /^Reply rate \[replies\/s\]: min .+ max ([0-9]*?\.?[0-9]+) /,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="78">
           
           
-          <code class="ruby">        :reply_size_header          =&gt; /^Reply size \[B\]: header ([0-9]*?\.?[0-9]+) /,</code>
+          <code class="ruby">        :reply_rate_stddev          =&gt; /^Reply rate \[replies\/s\]: min .+ stddev ([0-9]*?\.?[0-9]+) /,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="79">
           
           
-          <code class="ruby">        :reply_size_content         =&gt; /^Reply size \[B\]: header .+ content ([0-9]*?\.?[0-9]+) /,</code>
+          <code class="ruby">        :reply_rate_samples         =&gt; /^Reply rate \[replies\/s\]: min .+ \(([0-9]*?\.?[0-9]+) samples/,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="80">
           
           
-          <code class="ruby">        :reply_size_footer          =&gt; /^Reply size \[B\]: header .+ footer ([0-9]*?\.?[0-9]+) /,</code>
+          <code class="ruby">        </code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="81">
           
           
-          <code class="ruby">        :reply_size_total           =&gt; /^Reply size \[B\]: header .+ \(total ([0-9]*?\.?[0-9]+)\)/,</code>
+          <code class="ruby">        # Reply time [ms]:</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="82">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">        :reply_time_response        =&gt; /^Reply time \[ms\]: response ([0-9]*?\.?[0-9]+) /,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="83">
           
           
-          <code class="ruby">        # Reply status:</code>
+          <code class="ruby">        :reply_time_transfer        =&gt; /^Reply time \[ms\]: response .+ transfer ([0-9]*?\.?[0-9]+)$/,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="84">
           
           
-          <code class="ruby">        :reply_status_1xx           =&gt; /^Reply status: 1xx=([0-9]*?\.?[0-9]+) /,</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="85">
           
           
-          <code class="ruby">        :reply_status_2xx           =&gt; /^Reply status: .+ 2xx=([0-9]*?\.?[0-9]+) /,</code>
+          <code class="ruby">        # Reply size [B]:</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="86">
           
           
-          <code class="ruby">        :reply_status_3xx           =&gt; /^Reply status: .+ 3xx=([0-9]*?\.?[0-9]+) /,</code>
+          <code class="ruby">        :reply_size_header          =&gt; /^Reply size \[B\]: header ([0-9]*?\.?[0-9]+) /,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="87">
           
           
-          <code class="ruby">        :reply_status_4xx           =&gt; /^Reply status: .+ 4xx=([0-9]*?\.?[0-9]+) /,</code>
+          <code class="ruby">        :reply_size_content         =&gt; /^Reply size \[B\]: header .+ content ([0-9]*?\.?[0-9]+) /,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="88">
           
           
-          <code class="ruby">        :reply_status_5xx           =&gt; /^Reply status: .+ 5xx=([0-9]*?\.?[0-9]+)/,</code>
+          <code class="ruby">        :reply_size_footer          =&gt; /^Reply size \[B\]: header .+ footer ([0-9]*?\.?[0-9]+) /,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="89">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">        :reply_size_total           =&gt; /^Reply size \[B\]: header .+ \(total ([0-9]*?\.?[0-9]+)\)/,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="90">
           
           
-          <code class="ruby">        # CPU time [s]:</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="91">
           
           
-          <code class="ruby">        :cpu_time_user_sec          =&gt; /^CPU time \[s\]: user ([0-9]*?\.?[0-9]+) /,</code>
+          <code class="ruby">        # Reply status:</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="92">
           
           
-          <code class="ruby">        :cpu_time_system_sec        =&gt; /^CPU time \[s\]: user .+ system ([0-9]*?\.?[0-9]+) /,</code>
+          <code class="ruby">        :reply_status_1xx           =&gt; /^Reply status: 1xx=([0-9]*?\.?[0-9]+) /,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="93">
           
           
-          <code class="ruby">        :cpu_time_user_pct          =&gt; /^CPU time \[s\]: user .+ \(user ([0-9]*?\.?[0-9]+)\% /,</code>
+          <code class="ruby">        :reply_status_2xx           =&gt; /^Reply status: .+ 2xx=([0-9]*?\.?[0-9]+) /,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="94">
           
           
-          <code class="ruby">        :cpu_time_system_pct        =&gt; /^CPU time \[s\]: user .+ system .+ system ([0-9]*?\.?[0-9]+)\% /,</code>
+          <code class="ruby">        :reply_status_3xx           =&gt; /^Reply status: .+ 3xx=([0-9]*?\.?[0-9]+) /,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="95">
           
           
-          <code class="ruby">        :cpu_time_total_pct         =&gt; /^CPU time \[s\]: user .+ total ([0-9]*?\.?[0-9]+)\%/,</code>
+          <code class="ruby">        :reply_status_4xx           =&gt; /^Reply status: .+ 4xx=([0-9]*?\.?[0-9]+) /,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="96">
           
           
-          <code class="ruby">       </code>
+          <code class="ruby">        :reply_status_5xx           =&gt; /^Reply status: .+ 5xx=([0-9]*?\.?[0-9]+)/,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="97">
           
           
-          <code class="ruby">        # Net I/O:</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="98">
           
           
-          <code class="ruby">        :net_io_kb_sec              =&gt; /^Net I\/O: ([0-9]*?\.?[0-9]+) KB/,</code>
+          <code class="ruby">        # CPU time [s]:</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="99">
           
           
-          <code class="ruby">        :net_io_bps                 =&gt; /^Net I\/O: .+ \((.+) bps\)/,</code>
+          <code class="ruby">        :cpu_time_user_sec          =&gt; /^CPU time \[s\]: user ([0-9]*?\.?[0-9]+) /,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="100">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">        :cpu_time_system_sec        =&gt; /^CPU time \[s\]: user .+ system ([0-9]*?\.?[0-9]+) /,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="101">
           
           
-          <code class="ruby">        # Errors:</code>
+          <code class="ruby">        :cpu_time_user_pct          =&gt; /^CPU time \[s\]: user .+ \(user ([0-9]*?\.?[0-9]+)\% /,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="102">
           
           
-          <code class="ruby">        :errors_total               =&gt; /^Errors: total ([0-9]*?\.?[0-9]+) /,</code>
+          <code class="ruby">        :cpu_time_system_pct        =&gt; /^CPU time \[s\]: user .+ system .+ system ([0-9]*?\.?[0-9]+)\% /,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="103">
           
           
-          <code class="ruby">        :errors_client_timeout      =&gt; /^Errors: total .+ client-timo ([0-9]*?\.?[0-9]+) /,</code>
+          <code class="ruby">        :cpu_time_total_pct         =&gt; /^CPU time \[s\]: user .+ total ([0-9]*?\.?[0-9]+)\%/,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="104">
           
           
-          <code class="ruby">        :errors_socket_timeout      =&gt; /^Errors: total .+ socket-timo ([0-9]*?\.?[0-9]+) /,</code>
+          <code class="ruby">       </code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="105">
           
           
-          <code class="ruby">        :errors_conn_refused        =&gt; /^Errors: total .+ connrefused ([0-9]*?\.?[0-9]+) /,</code>
+          <code class="ruby">        # Net I/O:</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="106">
           
           
-          <code class="ruby">        :errors_conn_reset          =&gt; /^Errors: total .+ connreset ([0-9]*?\.?[0-9]+)/,</code>
+          <code class="ruby">        :net_io_kb_sec              =&gt; /^Net I\/O: ([0-9]*?\.?[0-9]+) KB/,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="107">
           
           
-          <code class="ruby">        :errors_fd_unavail          =&gt; /^Errors: fd-unavail ([0-9]*?\.?[0-9]+) /,</code>
+          <code class="ruby">        :net_io_bps                 =&gt; /^Net I\/O: .+ \((.+) bps\)/,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="108">
           
           
-          <code class="ruby">        :errors_addr_unavail        =&gt; /^Errors: fd-unavail .+ addrunavail ([0-9]*?\.?[0-9]+) /,</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="109">
           
           
-          <code class="ruby">        :errors_ftab_full           =&gt; /^Errors: fd-unavail .+ ftab-full ([0-9]*?\.?[0-9]+) /,</code>
+          <code class="ruby">        # Errors:</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="110">
           
           
-          <code class="ruby">        :errors_other               =&gt; /^Errors: fd-unavail .+ other ([0-9]*?\.?[0-9]+)/</code>
+          <code class="ruby">        :errors_total               =&gt; /^Errors: total ([0-9]*?\.?[0-9]+) /,</code>
         </li>
       
-        <li class="covered" data-hits="987" data-linenumber="111">
-          <span class="hits">987</span>
+        <li class="never" data-hits="" data-linenumber="111">
           
-          <code class="ruby">      }</code>
+          
+          <code class="ruby">        :errors_client_timeout      =&gt; /^Errors: total .+ client-timo ([0-9]*?\.?[0-9]+) /,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="112">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">        :errors_socket_timeout      =&gt; /^Errors: total .+ socket-timo ([0-9]*?\.?[0-9]+) /,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="113">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">        :errors_conn_refused        =&gt; /^Errors: total .+ connrefused ([0-9]*?\.?[0-9]+) /,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="114">
           
           
-          <code class="ruby">end</code>
+          <code class="ruby">        :errors_conn_reset          =&gt; /^Errors: total .+ connreset ([0-9]*?\.?[0-9]+)/,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="115">
+          
+          
+          <code class="ruby">        :errors_fd_unavail          =&gt; /^Errors: fd-unavail ([0-9]*?\.?[0-9]+) /,</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="116">
+          
+          
+          <code class="ruby">        :errors_addr_unavail        =&gt; /^Errors: fd-unavail .+ addrunavail ([0-9]*?\.?[0-9]+) /,</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="117">
+          
+          
+          <code class="ruby">        :errors_ftab_full           =&gt; /^Errors: fd-unavail .+ ftab-full ([0-9]*?\.?[0-9]+) /,</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="118">
+          
+          
+          <code class="ruby">        :errors_other               =&gt; /^Errors: fd-unavail .+ other ([0-9]*?\.?[0-9]+)/</code>
+        </li>
+      
+        <li class="covered" data-hits="987" data-linenumber="119">
+          <span class="hits">987</span>
+          
+          <code class="ruby">      }</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="120">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="121">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="122">
+          
+          
+          <code class="ruby">    # everything below is for verbose mode</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="123">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    def self.percentiles</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="124">
+          
+          
+          <code class="ruby">      [ 75, 80, 85, 90, 95, 99 ]</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="125">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="126">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="127">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    private</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="128">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    def self.calculate_percentile percentile, values</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="129">
+          
+          
+          <code class="ruby">      v = values.sort</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="130">
+          
+          
+          <code class="ruby">      v[percentile_index(percentile, values.count)]</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="131">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="132">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="133">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    def self.percentile_index percentile, count</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="134">
+          
+          
+          <code class="ruby">      ((count/100)*percentile)-1</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="135">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="136">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="137">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="138">
           
           
           <code class="ruby"></code>

@@ -10,6 +10,14 @@ class HTTPerf
     def self.parse raw
       lines = raw.split("\n") 
       matches = {}
+
+      # for verbose matching
+      # this only works if httperf output is
+      # generated using my version of httperf
+      # see: https://github.com/rubyops/httperf
+      verbose = false
+      verbose_connection_times = []
+
       lines.each do |line|
         matched = false
         unless line.empty?
@@ -109,6 +117,21 @@ class HTTPerf
         :errors_ftab_full           => /^Errors: fd-unavail .+ ftab-full ([0-9]*?\.?[0-9]+) /,
         :errors_other               => /^Errors: fd-unavail .+ other ([0-9]*?\.?[0-9]+)/
       }
+    end
+
+    # everything below is for verbose mode
+    def self.percentiles
+      [ 75, 80, 85, 90, 95, 99 ]
+    end
+
+    private
+    def self.calculate_percentile percentile, values
+      v = values.sort
+      v[percentile_index(percentile, values.count)]
+    end
+
+    def self.percentile_index percentile, count
+      ((count/100)*percentile)-1
     end
   end
 end
