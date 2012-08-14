@@ -3,7 +3,10 @@ $:.unshift File.dirname(__FILE__)
 require 'open4'
 require 'httperf/parser'
 require 'httperf/version'
-
+begin 
+  require 'httperf/grapher'
+rescue LoadError
+end
 class HTTPerf
 
   # @return [Boolean] parse flag

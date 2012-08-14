@@ -52,6 +52,16 @@
 		  should parse field correctly -- errors_ftab_full
 		  should parse field correctly -- errors_other
 		
+		HTTPerf::Parser with verbose
+		  should parse raw data
+		  should parse verbose correctly -- connection_time_75_pct
+		  should parse verbose correctly -- connection_time_80_pct
+		  should parse verbose correctly -- connection_time_85_pct
+		  should parse verbose correctly -- connection_time_90_pct
+		  should parse verbose correctly -- connection_time_95_pct
+		  should parse verbose correctly -- connection_time_99_pct
+		  should have :connection_times Array
+		
 		HTTPerf basic usage
 		  should init empty
 		  should use path if set
@@ -82,6 +92,6 @@
 		  should set output to #fork_out
 		  should set errors to #fork_err
 		
-		Finished in 0.22075 seconds
-		67 examples, 0 failures
-		Coverage report generated for RSpec to /home/jmervine/Development/httperfrb/coverage. 78 / 84 LOC (92.86%) covered.
+		Finished in 0.27754 seconds
+		75 examples, 0 failures
+		Coverage report generated for RSpec to /home/jmervine/Development/httperfrb/coverage. 96 / 98 LOC (97.96%) covered.
