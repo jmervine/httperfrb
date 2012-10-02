@@ -4,3 +4,5 @@ vendor/bundle
 .yardoc
 *.gem
 *.png
+doc
+coverage
