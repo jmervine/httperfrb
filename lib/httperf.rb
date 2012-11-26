@@ -1,12 +1,16 @@
 # @author Joshua Mervine <joshua@mervine.net>
 $:.unshift File.dirname(__FILE__)
-require 'open4'
 require 'httperf/parser'
 require 'httperf/version'
-begin 
+
+autoload :Open3, 'open3'
+autoload :Open4, 'open4'
+
+begin
   require 'httperf/grapher'
 rescue LoadError
 end
+
 class HTTPerf
 
   # @return [Boolean] parse flag
@@ -61,11 +65,11 @@ class HTTPerf
   #   -  wsesslog
   #   -  wset
   def initialize options={}, path=nil
-    self.parse = options.delete("parse") 
+    self.parse = options.delete("parse")
     options.each_key do |k|
       raise "'#{k}' is an invalid httperf param" unless params.keys.include?(k)
     end
-    @options = params.merge(options)  
+    @options = params.merge(options)
     if path.nil?
       @command = %x{ which httperf }.chomp
       raise "httperf not found" unless @command =~ /httperf/
@@ -84,7 +88,7 @@ class HTTPerf
   # run httperf and wait for it to finish
   #  return errors if any, otherwise return
   #  results
-  def run 
+  def run
     status, out, err = nil
     Open3.popen3(command) do |stdin, stdout, stderr, wait_thr|
       pid = wait_thr.pid
@@ -127,7 +131,7 @@ class HTTPerf
 
   # print httperf command to be run
   # - for debugging and testing
-  def command 
+  def command
     return "#{@command} #{options}"
   end
 
