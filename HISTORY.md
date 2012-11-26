@@ -1,6 +1,10 @@
 HTTPerf.rb
 ==========
 
+### 0.3.6
+
+* cleaning up Open3 vs. Open4 and making them autoload for a slight performance increase
+
 ### 0.3.5
 
 * fixing bug with parsing verbose output
@@ -22,7 +26,7 @@ HTTPerf.rb
 
 * added handling for [HTTPerf::Grapher](http://github.com/rubyops/httperfrb-grapher)
 
-### 0.2.1 
+### 0.2.1
 
 * added verbose handling
 * refactored parser a bit
