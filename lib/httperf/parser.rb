@@ -9,7 +9,7 @@ class HTTPerf
     # @param [String] raw httperf output
     def self.parse raw
 
-      lines = raw.split("\n") 
+      lines = raw.split("\n")
       matches = {}
 
       # for verbose matching
@@ -22,7 +22,7 @@ class HTTPerf
       lines.each do |line|
 
         if verbose_expression.match(line)
-          verbose_connection_times.push($1) 
+          verbose_connection_times.push($1)
           next
         end
 
@@ -68,7 +68,7 @@ class HTTPerf
 
         # Maximum connect burst length:
         :max_connect_burst_length   => /Maximum connect burst length: ([0-9]*?\.?[0-9]+)$/,
-        
+
         # Total:
         :total_connections          => /^Total: connections ([0-9]*?\.?[0-9]+) /,
         :total_requests             => /^Total: connections .+ requests ([0-9]*?\.?[0-9]+) /,
@@ -76,15 +76,15 @@ class HTTPerf
         :total_test_duration        => /^Total: connections .+ test-duration ([0-9]*?\.?[0-9]+) /,
 
         # Connection rate:
-        :connection_rate_per_sec    => /^Connection rate: ([0-9]*?\.?[0-9]+) /, 
-        :connection_rate_ms_conn    => /^Connection rate: .+ \(([0-9]*?\.?[0-9]+) ms/, 
+        :connection_rate_per_sec    => /^Connection rate: ([0-9]*?\.?[0-9]+) /,
+        :connection_rate_ms_conn    => /^Connection rate: .+ \(([0-9]*?\.?[0-9]+) ms/,
 
         # Connection time [ms]:
-        :connection_time_min        => /^Connection time \[ms\]: min ([0-9]*?\.?[0-9]+) /, 
-        :connection_time_avg        => /^Connection time \[ms\]: min .+ avg ([0-9]*?\.?[0-9]+) /, 
-        :connection_time_max        => /^Connection time \[ms\]: min .+ max ([0-9]*?\.?[0-9]+) /, 
-        :connection_time_median     => /^Connection time \[ms\]: min .+ median ([0-9]*?\.?[0-9]+) /, 
-        :connection_time_stddev     => /^Connection time \[ms\]: min .+ stddev ([0-9]*?\.?[0-9]+)$/, 
+        :connection_time_min        => /^Connection time \[ms\]: min ([0-9]*?\.?[0-9]+) /,
+        :connection_time_avg        => /^Connection time \[ms\]: min .+ avg ([0-9]*?\.?[0-9]+) /,
+        :connection_time_max        => /^Connection time \[ms\]: min .+ max ([0-9]*?\.?[0-9]+) /,
+        :connection_time_median     => /^Connection time \[ms\]: min .+ median ([0-9]*?\.?[0-9]+) /,
+        :connection_time_stddev     => /^Connection time \[ms\]: min .+ stddev ([0-9]*?\.?[0-9]+)$/,
         :connection_time_connect    => /^Connection time \[ms\]: connect ([0-9]*?\.?[0-9]+)$/,
 
         # Connection length [replies/conn]:
@@ -103,7 +103,7 @@ class HTTPerf
         :reply_rate_max             => /^Reply rate \[replies\/s\]: min .+ max ([0-9]*?\.?[0-9]+) /,
         :reply_rate_stddev          => /^Reply rate \[replies\/s\]: min .+ stddev ([0-9]*?\.?[0-9]+) /,
         :reply_rate_samples         => /^Reply rate \[replies\/s\]: min .+ \(([0-9]*?\.?[0-9]+) samples/,
-        
+
         # Reply time [ms]:
         :reply_time_response        => /^Reply time \[ms\]: response ([0-9]*?\.?[0-9]+) /,
         :reply_time_transfer        => /^Reply time \[ms\]: response .+ transfer ([0-9]*?\.?[0-9]+)$/,
@@ -127,7 +127,7 @@ class HTTPerf
         :cpu_time_user_pct          => /^CPU time \[s\]: user .+ \(user ([0-9]*?\.?[0-9]+)\% /,
         :cpu_time_system_pct        => /^CPU time \[s\]: user .+ system .+ system ([0-9]*?\.?[0-9]+)\% /,
         :cpu_time_total_pct         => /^CPU time \[s\]: user .+ total ([0-9]*?\.?[0-9]+)\%/,
-       
+
         # Net I/O:
         :net_io_kb_sec              => /^Net I\/O: ([0-9]*?\.?[0-9]+) KB/,
         :net_io_bps                 => /^Net I\/O: .+ \((.+) bps\)/,
@@ -158,7 +158,7 @@ class HTTPerf
       when 2
         values.last
       else
-        values.sort[((values.count.to_f/100)*percentile.to_f).round(0)-1] 
+        values.sort[((values.count.to_f/100)*percentile.to_f).round(0)-1]
       end
     end
 
