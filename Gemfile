@@ -6,4 +6,6 @@ group :development do
   gem 'yard'
   gem 'redcarpet'
   gem 'rake'
+  gem 'pry'
+  gem 'pry-doc'
 end
