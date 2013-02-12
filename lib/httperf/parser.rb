@@ -158,7 +158,7 @@ class HTTPerf
       when 2
         values.last
       else
-        values.sort[((values.count.to_f/100)*percentile.to_f).round(0)-1]
+        (values.sort { |x,y| x.to_f <=> y.to_f })[((values.count.to_f/100)*percentile.to_f).round(0)-1]
       end
     end
 
