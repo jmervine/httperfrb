@@ -73,6 +73,9 @@ class HTTPerf
       valid_command = !!(command.match(/([a-z\/]*)httperf /))
       raise "Invalid httperf command" unless valid_command
 
+      command.gsub!("--hog", "--hog=true")
+      command.gsub!("--verbose", "--verbose=true")
+
       cli_options = command.split(" --")
       path = cli_options.delete_at(0)
       path = nil unless path.start_with?("/")
@@ -161,6 +164,8 @@ class HTTPerf
     @options.each do |key,val|
       opts << "--#{key}=#{val} " unless val.nil?
     end
+    opts.gsub!("--hog=true", "--hog")
+    opts.gsub!("--hog=false", "")
     opts.gsub!("--verbose=true", "--verbose")
     opts.gsub!("--verbose=false", "")
     opts

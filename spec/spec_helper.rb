@@ -10,7 +10,7 @@ end
 require './lib/httperf'
 
 $bad_params = { "bar" => "param" }
-$good_params = { "server" => "localhost", "port" => 8080, "uri" => "/foo/bar" }
+$good_params = { "server" => "localhost", "port" => 8080, "uri" => "/foo/bar", "hog" => true }
 
 $results_raw = File.open("./spec/dummy_results.txt","r").read
 $verbose_raw = File.open("./spec/dummy_verbose_results.txt","r").read

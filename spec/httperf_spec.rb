@@ -27,7 +27,7 @@ describe HTTPerf, "basic usage" do
   end
   it "should build command correctly" do
     httperf = %x{ which httperf }.chomp
-    HTTPerf.new($good_params).command.should eq "#{httperf} --port=8080 --server=localhost --uri=/foo/bar "
+    HTTPerf.new($good_params).command.should eq "#{httperf} --hog --port=8080 --server=localhost --uri=/foo/bar "
   end
 
   context "initialize with command" do
@@ -46,6 +46,8 @@ describe HTTPerf, "basic usage" do
     it "should accept valid command line options" do
       expect { HTTPerf.new("command" => "httperf --num-conns=2", "parse" => true) }.to_not raise_error
       expect { HTTPerf.new("command" => "httperf --num-conns 2", "parse" => true) }.to_not raise_error
+      expect { HTTPerf.new("command" => "httperf --verbose", "parse" => true) }.to_not raise_error
+      expect { HTTPerf.new("command" => "httperf --num-conns=2 --hog", "parse" => true) }.to_not raise_error
     end
     it "should set httperf exe correctly" do
       HTTPerf.new("command" => "httperf --num-conns=2", "parse" => true).command.should include "\/httperf "
@@ -61,7 +63,7 @@ describe HTTPerf, "basic usage" do
         "--num-conns 2 --server foobar",
         "--server=foobar --rate 10",
         "--server fooar --rate=10",
-        "--num-conns=2",
+        "--num-conns=2 --hog --verbose",
         "--num-conns 2" ].each do |param|
         expect { HTTPerf.new("command" => "httperf #{param}") }.to_not raise_error
       end
@@ -70,6 +72,8 @@ describe HTTPerf, "basic usage" do
       # fail.
       HTTPerf.new("command" => "httperf --server=foobar").command.should include "--server=foobar"
       HTTPerf.new("command" => "httperf --server=foobar --rate 2").command.should include "--rate=2"
+      HTTPerf.new("command" => "httperf --server=foobar --verbose").command.should include "--verbose"
+      HTTPerf.new("command" => "httperf --server=foobar --verbose --hog").command.should include "--hog"
     end
   end
 end
@@ -87,9 +91,9 @@ describe HTTPerf, "#update_option" do
   it "should update an option" do
     httperf = %x{ which httperf }.chomp
     perf = HTTPerf.new($good_params)
-    perf.command.should eq "#{httperf} --port=8080 --server=localhost --uri=/foo/bar "
+    perf.command.should eq "#{httperf} --hog --port=8080 --server=localhost --uri=/foo/bar "
     perf.update_option("port", 9001)
-    perf.command.should eq "#{httperf} --port=9001 --server=localhost --uri=/foo/bar "
+    perf.command.should eq "#{httperf} --hog --port=9001 --server=localhost --uri=/foo/bar "
   end
 end
 
