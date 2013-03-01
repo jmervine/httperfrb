@@ -66,6 +66,25 @@ class HTTPerf
   #   -  wset
   def initialize options={}, path=nil
     self.parse = options.delete("parse")
+    if options.has_key?("command")
+      command = options.delete("command")
+      raise "Option command must not be passed with other options" unless options.empty?
+
+      valid_command = !!(command.match(/([a-z\/]*)httperf /))
+      raise "Invalid httperf command" unless valid_command
+
+      cli_options = command.split(" --")
+      path = cli_options.delete_at(0)
+      path = nil unless path.start_with?("/")
+
+      cli_options.each do |clio|
+        kvp = clio.split("=")
+        kvp = clio.split(" ") unless kvp.size == 2
+        raise "Error parsing command params" unless kvp.size == 2
+        options[kvp.first] = kvp.last
+      end
+    end
+
     options.each_key do |k|
       raise "'#{k}' is an invalid httperf param" unless params.keys.include?(k)
     end

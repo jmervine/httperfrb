@@ -7,10 +7,10 @@ describe HTTPerf, "basic usage" do
     begin
       HTTPerf.new($good_params,"/usr/bin/httperf").command.should eq "/usr/bin/httperf --port=8080 --server=localhost --uri=/foo/bar "
     rescue RuntimeError=>e
-      e.to_s.should match /\/usr\/bin\/httperf/
+      e.to_s.should match(/\/usr\/bin\/httperf/)
     end
   end
-  it "should init with good params" do 
+  it "should init with good params" do
     expect { HTTPerf.new($good_params) }.to_not raise_error
   end
   it "should init with verbose" do
@@ -20,14 +20,57 @@ describe HTTPerf, "basic usage" do
     expect { HTTPerf.new($good_params.merge("parse" => true)) }.to_not raise_error
     p = HTTPerf.new($good_params.merge("parse" => true))
     p.parse.should be_true
-    p.instance_variable_get(:@command).should_not match /parse/
+    p.instance_variable_get(:@command).should_not match(/parse/)
   end
   it "should raise error with bad params" do
     expect { HTTPerf.new($bad_params) }.to raise_error
   end
-  it "should build command correctly" do 
+  it "should build command correctly" do
     httperf = %x{ which httperf }.chomp
     HTTPerf.new($good_params).command.should eq "#{httperf} --port=8080 --server=localhost --uri=/foo/bar "
+  end
+
+  context "initialize with command" do
+    it "should accept command param" do
+      expect { HTTPerf.new("command" => "httperf ") }.to_not raise_error
+    end
+    it "should accept command and parse" do
+      expect { HTTPerf.new("command" => "httperf ", "parse" => true) }.to_not raise_error
+    end
+    it "should not accept anthing by command and parse" do
+      expect { HTTPerf.new("command" => "httperf ", "parse" => true, "num-conns" => 1) }.to raise_error
+    end
+    it "should fail if command doesn't start with httperf" do
+      expect { HTTPerf.new("command" => "foo") }.to raise_error
+    end
+    it "should accept valid command line options" do
+      expect { HTTPerf.new("command" => "httperf --num-conns=2", "parse" => true) }.to_not raise_error
+      expect { HTTPerf.new("command" => "httperf --num-conns 2", "parse" => true) }.to_not raise_error
+    end
+    it "should set httperf exe correctly" do
+      HTTPerf.new("command" => "httperf --num-conns=2", "parse" => true).command.should include "\/httperf "
+
+      # The error below means that the httperf command has be successful set
+      # and things are moving along to validate it.
+      expect { HTTPerf.new("command" => "/foo/bar/httperf --num-conns=2", "parse" => true).command.should start_with "/foo/bar/httperf " }.to raise_error(/\/foo\/bar\/httperf not found/)
+    end
+
+    it "should set cli options correctly" do
+      # test a few possible options
+      [ "--num-conns=2 --server=foobar",
+        "--num-conns 2 --server foobar",
+        "--server=foobar --rate 10",
+        "--server fooar --rate=10",
+        "--num-conns=2",
+        "--num-conns 2" ].each do |param|
+        expect { HTTPerf.new("command" => "httperf #{param}") }.to_not raise_error
+      end
+
+      # Check to ensure has the right param, not just didn't
+      # fail.
+      HTTPerf.new("command" => "httperf --server=foobar").command.should include "--server=foobar"
+      HTTPerf.new("command" => "httperf --server=foobar --rate 2").command.should include "--rate=2"
+    end
   end
 end
 
@@ -63,18 +106,18 @@ describe HTTPerf, "#run with verbose" do
     @run = HTTPerf.new("verbose" => true).run
   end
   it "should run httperf and wait for it to finish" do
-    @run.match /^httperf --client=0\/1 --server=localhost --port=80/
+    @run.match(/^httperf --client=0\/1 --server=localhost --port=80/)
   end
   it "should run httperf verobsely" do
-    @run.match /^httperf .+ --verbose/
-    @run.match /^Connection lifetime = /
+    @run.match(/^httperf .+ --verbose/)
+    @run.match(/^Connection lifetime = /)
   end
 end
 
 describe HTTPerf, "#run without parse" do
   it "should run httperf and wait for it to finish" do
     perf = HTTPerf.new
-    perf.run.match /^httperf --client=0\/1 --server=localhost --port=80/
+    perf.run.match(/^httperf --client=0\/1 --server=localhost --port=80/)
   end
 end
 
@@ -93,7 +136,7 @@ describe HTTPerf, "#fork" do
     @thread.alive?.should be_false
   end
   it "should set output to #fork_out" do
-    @perf.fork_out.should match /^httperf/
+    @perf.fork_out.should match(/^httperf/)
   end
   it "should set errors to #fork_err" do
     @perf.fork_err.should be_nil
