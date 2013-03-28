@@ -66,40 +66,10 @@ class HTTPerf
   #   -  wset
   def initialize options={}, path=nil
     self.parse = options.delete("parse")
-    if options.has_key?("command")
-      command = options.delete("command")
-      raise "Option command must not be passed with other options" unless options.empty?
-
-      valid_command = !!(command.match(/([a-z\/]*)httperf /))
-      raise "Invalid httperf command" unless valid_command
-
-      command.gsub!("--hog", "--hog=true")
-      command.gsub!("--verbose", "--verbose=true")
-
-      cli_options = command.split(" --")
-      path = cli_options.delete_at(0)
-      path = nil unless path.start_with?("/")
-
-      cli_options.each do |clio|
-        kvp = clio.split("=")
-        kvp = clio.split(" ") unless kvp.size == 2
-        raise "Error parsing command params" unless kvp.size == 2
-        options[kvp.first] = kvp.last
-      end
-    end
-
-    options.each_key do |k|
-      raise "'#{k}' is an invalid httperf param" unless params.keys.include?(k)
-    end
+    options = parse_command_option(options) if options.has_key?("command")
+    validate_options(options)
+    set_command_from_path(path) unless @command
     @options = params.merge(options)
-    if path.nil?
-      @command = %x{ which httperf }.chomp
-      raise "httperf not found" unless @command =~ /httperf/
-    else
-      path = path.chomp
-      @command = (path =~ /httperf$/ ? path : File.join(path, "httperf"))
-      raise "#{@command} not found" unless %x{ test -x "#{@command}" && echo "true" }.chomp == "true"
-    end
   end
 
   # update a given option
@@ -212,6 +182,54 @@ class HTTPerf
       "wsesslog" => nil,
       "wset" => nil
     }
+  end
+
+  def parse_command_option options
+    command = options.delete("command")
+    raise "Option command must not be passed with other options" unless options.empty?
+
+    raise "Invalid httperf command" unless !!(command.match(/([a-z\/]*)httperf /))
+
+    command.gsub!("--hog", "--hog=true")
+    command.gsub!("--verbose", "--verbose=true")
+
+    cli_options(command).each { |clio| options.merge!(split_cli_option(clio)) }
+
+    options
+  end
+
+  def cli_options command
+    opts = command.split(" --")
+    set_command_from_path(opts.delete_at(0))
+    opts
+  end
+
+  def set_command_from_path(path)
+    if path && path.start_with?("/")
+      path = path.chomp
+      @command = (path =~ /httperf$/ ? path : File.join(path, "httperf"))
+      raise "#{@command} not found" unless %x{ test -x "#{@command}" && echo "true" }.chomp == "true"
+    else
+      set_command_without_path
+    end
+  end
+
+  def set_command_without_path
+    @command = %x{ which httperf }.chomp
+    raise "httperf not found" unless @command =~ /httperf/
+  end
+
+  def split_cli_option(clio)
+    kvp = clio.split("=")
+    kvp = clio.split(" ") unless kvp.size == 2
+    raise "Error parsing command params" unless kvp.size == 2
+    return { kvp.first => kvp.last }
+  end
+
+  def validate_options options
+    options.each_key do |k|
+      raise "'#{k}' is an invalid httperf param" unless params.keys.include?(k)
+    end
   end
 
 end
