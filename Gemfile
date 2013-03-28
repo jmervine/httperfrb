@@ -1,4 +1,5 @@
 source "https://rubygems.org"
+gemspec
 gem 'open4'
 group :development do
   gem 'rspec'

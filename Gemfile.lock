@@ -1,3 +1,9 @@
+PATH
+  remote: .
+  specs:
+    httperfrb (0.3.8)
+      open4
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -34,6 +40,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  httperfrb!
   open4
   pry
   pry-doc

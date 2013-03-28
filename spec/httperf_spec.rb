@@ -3,6 +3,7 @@ describe HTTPerf, "basic usage" do
   it "should init empty" do
     expect { HTTPerf.new }.to_not raise_error
   end
+
   it "should use path if set" do
     begin
       HTTPerf.new($good_params,"/usr/bin/httperf").command.should eq "/usr/bin/httperf --port=8080 --server=localhost --uri=/foo/bar "
@@ -10,21 +11,31 @@ describe HTTPerf, "basic usage" do
       e.to_s.should match(/\/usr\/bin\/httperf/)
     end
   end
+
   it "should init with good params" do
     expect { HTTPerf.new($good_params) }.to_not raise_error
   end
+
   it "should init with verbose" do
     expect { HTTPerf.new($good_params.merge("verbose" => true)) }.to_not raise_error
   end
+
+  it "should init with tee" do
+    expect { HTTPerf.new($good_params.merge("tee" => true)) }.to_not raise_error
+    HTTPerf.new($good_params.merge("tee" => true)).instance_variable_get(:@tee).should be_true
+  end
+
   it "should init with parse" do
     expect { HTTPerf.new($good_params.merge("parse" => true)) }.to_not raise_error
     p = HTTPerf.new($good_params.merge("parse" => true))
     p.parse.should be_true
     p.instance_variable_get(:@command).should_not match(/parse/)
   end
+
   it "should raise error with bad params" do
     expect { HTTPerf.new($bad_params) }.to raise_error
   end
+
   it "should build command correctly" do
     httperf = %x{ which httperf }.chomp
     HTTPerf.new($good_params).command.should eq "#{httperf} --hog --port=8080 --server=localhost --uri=/foo/bar "
@@ -115,6 +126,32 @@ describe HTTPerf, "#run with verbose" do
   it "should run httperf verobsely" do
     @run.match(/^httperf .+ --verbose/)
     @run.match(/^Connection lifetime = /)
+  end
+end
+
+describe HTTPerf, "#run with tee" do
+  before(:all) do
+    @outio = StringIO.new
+    @old_stdout = $stdout
+    $stdout = @outio
+  end
+
+  after(:all) do
+    $stdout = @old_stdout
+  end
+
+  it "should not tee output to STDOUT" do
+    out_size_before = @outio.length
+    perf = HTTPerf.new
+    perf.run
+    @outio.length.should eq out_size_before
+  end
+
+  it "should tee output to STDOUT" do
+    out_size_before = @outio.length
+    perf = HTTPerf.new("tee" => true)
+    perf.run
+    @outio.length.should be > out_size_before
   end
 end
 

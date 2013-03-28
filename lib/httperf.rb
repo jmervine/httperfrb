@@ -14,11 +14,12 @@ end
 class HTTPerf
 
   # @return [Boolean] parse flag
-  attr_accessor :parse
+  attr_accessor :parse, :tee
 
   # availbe instance methods
   @fork_out, @fork_err = ''
   @fork_thr, @options, @command = nil
+  @tee = false
 
   # initialize with (optional):
   # - options: see below for options
@@ -66,10 +67,13 @@ class HTTPerf
   #   -  wset
   def initialize options={}, path=nil
     self.parse = options.delete("parse")
-    options = parse_command_option(options) if options.has_key?("command")
+    self.tee   = options.delete("tee")
+    options    = parse_command_option(options) if options.has_key?("command")
+
     validate_options(options)
     set_command_from_path(path) unless @command
-    @options = params.merge(options)
+
+    @options   = params.merge(options)
   end
 
   # update a given option
@@ -81,21 +85,29 @@ class HTTPerf
   #  return errors if any, otherwise return
   #  results
   def run
-    status, out, err = nil
+    out, err = "", ""
+
     Open3.popen3(command) do |stdin, stdout, stderr, wait_thr|
-      pid = wait_thr.pid
-      out = stdout.readlines
-      err = stderr.readlines
-      status = wait_thr.value
+      oline = stdout.read
+      eline = stderr.read
+
+      out << oline
+      err << eline unless eline =~ /httperf: warning:/
+
+      if @tee
+        print oline
+        print eline
+      end
     end
-    if status == 0
+
+    if err.empty?
       if @parse
-        return Parser.parse(out.join)
+        return Parser.parse(out)
       else
-        return out.join
+        return out
       end
     else
-      return err.join
+      return err
     end
   end
 
