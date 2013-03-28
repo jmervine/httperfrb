@@ -20,7 +20,7 @@ Requires httperf, of course...
 #### Redhat / CentOS
 
     sudo yum install httperf
-    
+
 #### My 'httperf'
 
 See: [httperf-0.9.1 with individual connection times](http://www.rubyops.net/2012/08/13/httperf-0_9_1_with_individual_connection_times).
@@ -51,23 +51,36 @@ Some basic usage examples.
 
     require 'httperf'
     perf = HTTPerf.new( "server" => "host", "port" => 8080, "uri" => "/foo" )
-    puts perf.parse = true
+    perf.parse = true
     puts perf.run
 
     # or directly
 
     puts HTTPerf::Parser.parse( HTTPerf.new( "server" => "host", "port" => 8080, "uri" => "/foo" ).run )
 
+### Teeing output
+
+When using the `run` method, an additional `tee` option is supported. This will print the `httperf` output while it's running.
+
+    require 'httperf'
+    perf = HTTPerf.new( "server" => "host", "port" => 8080, "uri" => "/foo", "tee" => true )
+
+    # This method is also supported.
+    #
+    # perf.tee = true
+
+    puts perf.run
+
 ## Useage - HTTPerf::Parser
 
-    require 'httperf/parser' 
-     
-    # read result from a file, for example   
+    require 'httperf/parser'
+
+    # read result from a file, for example
     puts HTTPerf::Parser.parse( File.open("httperf.out", "r").read )
-    
+
     # or verbose output
     puts HTTPerf::Parser.parse( File.open("httperf_verbose.out", "r").read, true )
-    
+
 #### From the command line:
 
 Something I've been playing around with, it's more of hack really. But it works well for seralizing output to YAML or JSON:
@@ -82,7 +95,7 @@ Something I've been playing around with, it's more of hack really. But it works 
 
 
 
-##### Parser Keys: 
+##### Parser Keys:
 
     :command
     :max_connect_burst_length
@@ -134,4 +147,4 @@ Something I've been playing around with, it's more of hack really. But it works 
     :errors_addr_unavail
     :errors_ftab_full
     :errors_other
-  
+
