@@ -1,6 +1,10 @@
 HTTPerf.rb
 ==========
 
+### 0.3.10
+
+* Adding `tee` support.
+
 ### 0.3.6
 
 * cleaning up Open3 vs. Open4 and making them autoload for a slight performance increase
