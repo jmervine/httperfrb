@@ -3,7 +3,7 @@ $:.unshift File.dirname(__FILE__)
 require 'httperf/parser'
 require 'httperf/version'
 
-autoload :Open3, 'open3'
+autoload :PTY,   'pty'
 autoload :Open4, 'open4'
 
 begin
@@ -85,29 +85,26 @@ class HTTPerf
   #  return errors if any, otherwise return
   #  results
   def run
-    out, err = "", ""
+    out = ""
 
-    Open3.popen3(command) do |stdin, stdout, stderr, wait_thr|
-      oline = stdout.read
-      eline = stderr.read
-
-      out << oline
-      err << eline unless eline =~ /httperf: warning:/
-
-      if @tee
-        print oline
-        print eline
+    begin
+      PTY.spawn(command) do |stdout, stdin, pid|
+        begin
+          stdout.each do |line|
+            out << line.strip+"\n"
+            print line if @tee
+          end
+        rescue Errno::EIO
+          #Errno:EIO error probably just means that the process has finished giving output
+        end
       end
+    rescue PTY::ChildExited
+      # The child process has exited.
     end
 
-    if err.empty?
-      if @parse
-        return Parser.parse(out)
-      else
-        return out
-      end
-    else
-      return err
+    if $?.exitstatus == 0
+      return Parser.parse(out) if @parse
+      return out
     end
   end
 
