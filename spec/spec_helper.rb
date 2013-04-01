@@ -1,5 +1,4 @@
 require 'simplecov'
-require 'stringio'
 SimpleCov.start do
     add_filter "/vendor/"
     add_filter "/coverage/"
@@ -8,6 +7,7 @@ SimpleCov.start do
     add_filter "version.rb"
 end
 
+require 'stringio'
 require './lib/httperf'
 
 $bad_params = { "bar" => "param" }
