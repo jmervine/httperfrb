@@ -1,7 +1,9 @@
+desc "yardoc"
 task :yard do
   puts %x{ yardoc --protected ./lib/**/*.rb }
 end
 
+desc "rspec"
 task :rspec do
   puts %x{ rspec -f d -c | tee rspec.tmp }
   %x{ cat rspec.tmp | sed -e 's/^/\t\t/g' > RSPECOUT.md && rm rspec.tmp }
@@ -18,7 +20,7 @@ task :pages do
   system(" set -x; rm -rf ./doc ./coverage ") or abort
   system(" set -x; mv -v /tmp/doc . ") or abort
   system(" set -x; mv -v /tmp/coverage . ") or abort
-  system(" set -x; git add . ") or abort 
+  system(" set -x; git add . ") or abort
   system(" set -x; git commit --all -m 'updating doc and coverage' ") or abort
   system(" set -x; git checkout master ") or abort
   puts "don't forget to run: git push origin gh-pages"

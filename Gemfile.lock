@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    httperfrb (0.3.10)
+    httperfrb (0.3.11)
       open4
 
 GEM

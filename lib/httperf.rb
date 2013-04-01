@@ -97,6 +97,7 @@ class HTTPerf
         rescue Errno::EIO
           #Errno:EIO error probably just means that the process has finished giving output
         end
+        Process.wait(pid)
       end
     rescue PTY::ChildExited
       # The child process has exited.
@@ -105,6 +106,8 @@ class HTTPerf
     if $?.exitstatus == 0
       return Parser.parse(out) if @parse
       return out
+    else
+      raise "httperf exited with status #{$?.exitstatus}\n\nhttperf output:\n--------------\n#{out}"
     end
   end
 

@@ -1,6 +1,10 @@
 HTTPerf.rb
 ==========
 
+### 0.3.11
+
+* Fixing error handling in process handing for `HTTPerf#run`.
+
 ### 0.3.10
 
 * Adding `tee` support.
