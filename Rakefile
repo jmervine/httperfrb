@@ -1,6 +1,6 @@
 desc "yardoc"
 task :yard do
-  puts %x{ yardoc --protected ./lib/**/*.rb }
+  puts %x{ yardoc --protected ./lib/httperf.rb ./lib/**/*.rb }
 end
 
 desc "rspec"
@@ -12,7 +12,7 @@ end
 desc "generate and update gh-pages"
 task :pages do
   system(" set -x; bundle exec rspec ") or abort
-  system(" set -x; bundle exec yardoc --protected ./lib/**/*.rb ") or abort
+  system(" set -x; bundle exec yardoc --protected ./lib/httperf.rb ./lib/**/*.rb ") or abort
   system(" set -x; rm -rf /tmp/doc /tmp/coverage ") or abort
   system(" set -x; mv -v ./doc /tmp ") or abort
   system(" set -x; mv -v ./coverage /tmp ") or abort
