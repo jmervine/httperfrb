@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Joshua Mervine"]
   s.email       = ["joshua@mervine.net"]
-  s.homepage    = "http://github.com/rubyops/httperfrb"
+  s.homepage    = "http://www.rubyops.net/gems/httperfrb"
   s.summary     = "HTTPerf via Ruby"
   s.description = "Simple interface for calling httperf via ruby."
  
