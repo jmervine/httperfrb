@@ -1,5 +1,5 @@
 language: ruby
-script: bundle exec rspec -c -fd
+script: PATH="./spec:$PATH" bundle exec rspec -c -fd
 rvm:
   - 1.9.2
   - 1.9.3
