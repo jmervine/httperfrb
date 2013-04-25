@@ -1,0 +1,4 @@
+#!/bin/bash
+cat ./dummy_results.txt
+
+# vim: filetype=sh:
