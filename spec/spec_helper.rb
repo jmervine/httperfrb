@@ -7,6 +7,8 @@ SimpleCov.start do
     add_filter "version.rb"
 end
 
+ENV['PATH'] = "./httperf:#{ENV['PATH']}"
+
 require 'stringio'
 require './lib/httperf'
 

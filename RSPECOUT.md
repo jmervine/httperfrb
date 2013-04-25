@@ -105,6 +105,6 @@
 		  should set output to #fork_out
 		  should set errors to #fork_err
 		
-		Finished in 0.76724 seconds
+		Finished in 0.70986 seconds
 		85 examples, 0 failures
-		Coverage report generated for RSpec to /home/jmervine/Development/httperfrb/coverage. 0 / 0 LOC (0.0%) covered.
+		Coverage report generated for RSpec to /home/jmervine/Development/httperfrb/coverage. 124 / 128 LOC (96.88%) covered.
