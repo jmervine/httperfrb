@@ -1,1 +1,1 @@
-## See: [www.rubyops.net/gems/httperfrb](http://www.rubyops.net/gems/httperfrb)
+## See: [mervine.net/gems/httperfrb](http://mervine.net/gems/httperfrb)
