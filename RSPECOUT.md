@@ -1,4 +1,99 @@
 		
+		HTTPerf basic usage
+		  should init empty
+		  should use path if set
+		  should init with good params
+		  should init with verbose
+		  should init with tee
+		  should init with parse
+		  should raise error with bad params
+		  should build command correctly
+		  initialize with command
+		    should accept command param
+		    should accept command and parse
+		    should not accept anthing by command and parse
+		    should fail if command doesn't start with httperf
+		    should accept valid command line options
+		    should set httperf exe correctly
+		    should set cli options correctly
+		
+		HTTPerf#parse
+		  should update parse flag
+		
+		HTTPerf#update_option
+		  should update an option
+		
+		HTTPerf#run
+		  should run httperf and wait for it to finish
+		
+		HTTPerf#run with verbose
+		  should run httperf and wait for it to finish
+		  should run httperf verobsely
+		
+		HTTPerf#run with tee
+		  should not tee output to STDOUT
+		  should tee output to STDOUT
+		
+		HTTPerf#run without parse
+		  should run httperf and wait for it to finish
+		
+		HTTPerf#fork
+		  should run httperf and fork the process unless a fork is running
+		  should set output to #fork_out
+		  should set errors to #fork_err
+		{:command=>
+		  "httperf --client=0/1 --server=localhost --port=80 --uri=/ --send-buffer=4096 --recv-buffer=16384 --num-conns=1 --num-calls=1",
+		 :max_connect_burst_length=>"0",
+		 :total_connections=>"1",
+		 :total_requests=>"0",
+		 :total_replies=>"0",
+		 :total_test_duration=>"0.000",
+		 :connection_rate_per_sec=>"49932.2",
+		 :connection_rate_ms_conn=>"0.0",
+		 :connection_time_min=>"0.0",
+		 :connection_time_avg=>"0.0",
+		 :connection_time_max=>"0.0",
+		 :connection_time_median=>"0.0",
+		 :connection_time_stddev=>"0.0",
+		 :connection_time_connect=>"0.1",
+		 :connection_length=>"0.000",
+		 :request_rate_per_sec=>"0.0",
+		 :request_rate_ms_request=>"0.0",
+		 :request_size=>"0.0",
+		 :reply_rate_min=>"0.0",
+		 :reply_rate_avg=>"0.0",
+		 :reply_rate_max=>"0.0",
+		 :reply_rate_stddev=>"0.0",
+		 :reply_rate_samples=>"0",
+		 :reply_time_response=>"0.0",
+		 :reply_time_transfer=>"0.0",
+		 :reply_size_header=>"0.0",
+		 :reply_size_content=>"0.0",
+		 :reply_size_footer=>"0.0",
+		 :reply_size_total=>"0.0",
+		 :reply_status_1xx=>"0",
+		 :reply_status_2xx=>"0",
+		 :reply_status_3xx=>"0",
+		 :reply_status_4xx=>"0",
+		 :reply_status_5xx=>"0",
+		 :cpu_time_user_sec=>"0.00",
+		 :cpu_time_system_sec=>"0.00",
+		 :cpu_time_user_pct=>"0.0",
+		 :cpu_time_system_pct=>"0.0",
+		 :cpu_time_total_pct=>"0.0",
+		 :net_io_kb_sec=>"0.0",
+		 :net_io_bps=>"0.0*10^6",
+		 :errors_total=>"1",
+		 :errors_client_timeout=>"0",
+		 :errors_socket_timeout=>"0",
+		 :errors_conn_refused=>"1",
+		 :errors_conn_reset=>"0",
+		 :errors_fd_unavail=>"0",
+		 :errors_addr_unavail=>"0",
+		 :errors_ftab_full=>"0",
+		 :errors_other=>"0"}
+		  should parse
+		
 		HTTPerf::Parser
 		  should parse raw data
 		  should parse field correctly -- command
@@ -62,49 +157,6 @@
 		  should parse verbose correctly -- connection_time_99_pct
 		  should have :connection_times Array
 		
-		HTTPerf basic usage
-		  should init empty
-		  should use path if set
-		  should init with good params
-		  should init with verbose
-		  should init with tee
-		  should init with parse
-		  should raise error with bad params
-		  should build command correctly
-		  initialize with command
-		    should accept command param
-		    should accept command and parse
-		    should not accept anthing by command and parse
-		    should fail if command doesn't start with httperf
-		    should accept valid command line options
-		    should set httperf exe correctly
-		    should set cli options correctly
-		
-		HTTPerf#parse
-		  should update parse flag
-		
-		HTTPerf#update_option
-		  should update an option
-		
-		HTTPerf#run
-		  should run httperf and wait for it to finish
-		
-		HTTPerf#run with verbose
-		  should run httperf and wait for it to finish
-		  should run httperf verobsely
-		
-		HTTPerf#run with tee
-		  should not tee output to STDOUT
-		  should tee output to STDOUT
-		
-		HTTPerf#run without parse
-		  should run httperf and wait for it to finish
-		
-		HTTPerf#fork
-		  should run httperf and fork the process unless a fork is running
-		  should set output to #fork_out
-		  should set errors to #fork_err
-		
-		Finished in 0.70986 seconds
-		85 examples, 0 failures
-		Coverage report generated for RSpec to /home/jmervine/Development/httperfrb/coverage. 124 / 128 LOC (96.88%) covered.
+		Finished in 0.5555 seconds
+		86 examples, 0 failures
+		Coverage report generated for RSpec to /home/jmervine/shared/httperfrb/coverage. 125 / 128 LOC (97.66%) covered.

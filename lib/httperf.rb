@@ -122,7 +122,7 @@ class HTTPerf
   # return results of last fork
   def fork_out
     if @parse
-      return Parse.parse(@fork_out, self.parse)
+      return Parser.parse(@fork_out)
     else
       return @fork_out
     end

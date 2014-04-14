@@ -182,5 +182,15 @@ describe HTTPerf, "#fork" do
   it "should set errors to #fork_err" do
     @perf.fork_err.should be_nil
   end
+  it "should parse" do
+    @perf.parse = true
+    @thread = @perf.fork
+    while(( @thread.alive? ))
+      sleep 0.1
+    end
+    @thread.alive?.should be_false
+    require 'pp'
+    pp @perf.fork_out
+  end
 end
 
