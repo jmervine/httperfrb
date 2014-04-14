@@ -1,3 +1,5 @@
+require "bundler/gem_tasks"
+
 desc "yardoc"
 task :yard do
   puts %x{ yardoc --protected ./lib/httperf.rb ./lib/**/*.rb }
