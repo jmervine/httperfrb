@@ -61,13 +61,231 @@
 
     <iframe id="search_frame"></iframe>
 
-    <div id="content"><div id='filecontents'><h2>See: <a href="http://www.rubyops.net/gems/httperfrb">www.rubyops.net/gems/httperfrb</a></h2>
+    <div id="content"><div id='filecontents'><h1>HTTPerf.rb</h1>
+
+<p><img src="https://badge.fury.io/rb/httperfrb.png" alt="Gem Version"> &nbsp; <img src="https://travis-ci.org/jmervine/httperfrb.png?branch=master" alt="Build Status"></p>
+
+<p>Simple Ruby interface for httperf.</p>
+
+<h2>Installing &#39;httperf&#39;</h2>
+
+<p>Requires <a href="http://mervine.net/httperf">httperf</a>, of course...</p>
+
+<h4>Mac</h4>
+
+<pre class="code ruby"><code>:::shell
+sudo port install httperf
+</code></pre>
+
+<h4>Debian / Ubuntu</h4>
+
+<pre class="code ruby"><code>:::shell
+sudo apt-get install httperf
+</code></pre>
+
+<h4>Redhat / CentOS</h4>
+
+<pre class="code ruby"><code>:::shell
+sudo yum install httperf
+</code></pre>
+
+<h4>My &#39;httperf&#39;</h4>
+
+<p>See: <a href="http://mervine.net/httperf-0-9-1-with-individual-connection-times">httperf-0.9.1 with individual connection times</a>.</p>
+
+<h2>Install</h2>
+
+<pre class="code ruby"><code>:::shell
+gem install httperfrb
+</code></pre>
+
+<h2>Usage - HTTPerf</h2>
+
+<p>Some basic usage examples.</p>
+
+<pre class="code ruby"><code>:::ruby
+require &#39;httperf&#39;
+perf = HTTPerf.new( &quot;server&quot; =&gt; &quot;host&quot;, &quot;port&quot; =&gt; 8080, &quot;uri&quot; =&gt; &quot;/foo&quot; )
+puts perf.run
+
+perf.update_option(&quot;uri&quot;, &quot;/foo/bar&quot;)
+thread = perf.fork
+while((thread.alive?))
+  sleep 0.01
+  print &quot;#&quot;
+end
+unless perf.fork_err.nil?
+  puts perf.fork_out
+end
+</code></pre>
+
+<h3>Teeing output</h3>
+
+<p>Added in 0.3.10.</p>
+
+<blockquote>
+<p>Adding the <code>tee</code> param will print httperf output while running the process.</p>
+</blockquote>
+
+<pre class="code ruby"><code>:::ruby
+require &#39;httperf&#39;
+perf = HTTPerf.new( &quot;server&quot; =&gt; &quot;host&quot;, &quot;port&quot; =&gt; 8080, &quot;uri&quot; =&gt; &quot;/foo&quot;, &quot;tee&quot; =&gt; true )
+output = perf.run
+</code></pre>
+
+<h3>With HTTPerf::Parser</h3>
+
+<pre class="code ruby"><code>:::ruby
+require &#39;httperf&#39;
+perf = HTTPerf.new( &quot;server&quot; =&gt; &quot;host&quot;, &quot;port&quot; =&gt; 8080, &quot;uri&quot; =&gt; &quot;/foo&quot; )
+puts perf.parse = true
+puts perf.run
+
+# or directly
+
+puts HTTPerf::Parser.parse( HTTPerf.new( &quot;server&quot; =&gt; &quot;host&quot;, &quot;port&quot; =&gt; 8080, &quot;uri&quot; =&gt; &quot;/foo&quot; ).run )
+</code></pre>
+
+<h2>Useage - HTTPerf::Parser</h2>
+
+<pre class="code ruby"><code>:::ruby
+require &#39;httperf/parser&#39;
+
+# read result from a file, for example
+puts HTTPerf::Parser.parse( File.open(&quot;httperf.out&quot;, &quot;r&quot;).read )
+
+# or verbose output
+puts HTTPerf::Parser.parse( File.open(&quot;httperf_verbose.out&quot;, &quot;r&quot;).read, true )
+</code></pre>
+
+<h4>From the command line:</h4>
+
+<p>Something I&#39;ve been playing around with, it&#39;s more of hack really. But it works well for seralizing output to YAML or JSON:</p>
+
+<h5>To JSON file:</h5>
+
+<pre class="code ruby"><code>:::shell
+httperf --num-conns=10 --verbose | ruby -e &#39;require &quot;httperf/parser&quot;; require &quot;json&quot;; puts HTTPerf::Parser.parse(ARGF.read).to_json&#39; &gt; httperf.json
+</code></pre>
+
+<h5>To YAML file:</h5>
+
+<pre class="code ruby"><code>:::shell
+httperf --num-conns=10 --verbose | ruby -e &#39;require &quot;httperf/parser&quot;; require &quot;yaml&quot;; puts HTTPerf::Parser.parse(ARGF.read).to_yaml&#39; &gt; httperf.yml
+</code></pre>
+
+<h4>Parser Keys:</h4>
+
+<pre class="code ruby"><code>:::ruby
+:command
+:max_connect_burst_length
+:total_connections
+:total_requests
+:total_replies
+:total_test_duration
+:connection_rate_per_sec
+:connection_rate_ms_conn
+:connection_time_min
+:connection_time_avg
+:connection_time_max
+:connection_time_median
+:connection_time_stddev
+:connection_time_connect
+:connection_length
+:request_rate_per_sec
+:request_rate_ms_request
+:request_size
+:reply_rate_min
+:reply_rate_avg
+:reply_rate_max
+:reply_rate_stddev
+:reply_rate_samples
+:reply_time_response
+:reply_time_transfer
+:reply_size_header
+:reply_size_content
+:reply_size_footer
+:reply_size_total
+:reply_status_1xx
+:reply_status_2xx
+:reply_status_3xx
+:reply_status_4xx
+:reply_status_5xx
+:cpu_time_user_sec
+:cpu_time_system_sec
+:cpu_time_user_pct
+:cpu_time_system_pct
+:cpu_time_total_pct
+:net_io_kb_sec
+:net_io_bps
+:errors_total
+:errors_client_timeout
+:errors_socket_timeout
+:errors_conn_refused
+:errors_conn_reset
+:errors_fd_unavail
+:errors_addr_unavail
+:errors_ftab_full
+:errors_other
+</code></pre>
+
+<h4>Verbose Percentile Parser Keys:</h4>
+
+<pre class="code ruby"><code><span class='symbol'>:connection_time_75_pct</span>
+<span class='symbol'>:connection_time_80_pct</span>
+<span class='symbol'>:connection_time_85_pct</span>
+<span class='symbol'>:connection_time_90_pct</span>
+<span class='symbol'>:connection_time_95_pct</span>
+<span class='symbol'>:connection_time_99_pct</span>
+</code></pre>
+
+<h4>Accepted Options:</h4>
+
+<ul>
+<li><code>&quot;add-header&quot;</code></li>
+<li><code>&quot;burst-length&quot;</code></li>
+<li><code>&quot;client&quot;</code></li>
+<li><code>&quot;close-with-reset&quot;</code></li>
+<li><code>&quot;debug&quot;</code></li>
+<li><code>&quot;failure-status&quot;</code></li>
+<li><code>&quot;hog&quot;</code></li>
+<li><code>&quot;http-version&quot;</code></li>
+<li><code>&quot;max-connections&quot;</code></li>
+<li><code>&quot;max-piped-calls&quot;</code></li>
+<li><code>&quot;method&quot;</code></li>
+<li><code>&quot;no-host-hdr&quot;</code></li>
+<li><code>&quot;num-calls&quot;</code></li>
+<li><code>&quot;num-conns&quot;</code></li>
+<li><code>&quot;period&quot;</code></li>
+<li><code>&quot;port&quot;</code></li>
+<li><code>&quot;print-reply&quot;</code></li>
+<li><code>&quot;print-request&quot;</code></li>
+<li><code>&quot;rate&quot;</code></li>
+<li><code>&quot;recv-buffer&quot;</code></li>
+<li><code>&quot;retry-on-failure&quot;</code></li>
+<li><code>&quot;send-buffer&quot;</code></li>
+<li><code>&quot;server&quot;</code></li>
+<li><code>&quot;server-name&quot;</code></li>
+<li><code>&quot;session-cookies&quot;</code></li>
+<li><code>&quot;ssl&quot;</code></li>
+<li><code>&quot;ssl-ciphers&quot;</code></li>
+<li><code>&quot;ssl-no-reuse&quot;</code></li>
+<li><code>&quot;think-timeout&quot;</code></li>
+<li><code>&quot;timeout&quot;</code></li>
+<li><code>&quot;uri&quot;</code></li>
+<li><code>&quot;verbose&quot;</code></li>
+<li><code>&quot;version&quot;</code></li>
+<li><code>&quot;wlog&quot;</code></li>
+<li><code>&quot;wsess&quot;</code></li>
+<li><code>&quot;wsesslog&quot;</code></li>
+<li><code>&quot;wset&quot;</code></li>
+</ul>
 </div></div>
 
     <div id="footer">
-  Generated on Mon Apr  1 15:18:22 2013 by
+  Generated on Mon Apr 14 20:32:18 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.2.1 (ruby-1.9.3).
+  0.8.2.1 (ruby-2.1.0).
 </div>
 
   </body>
