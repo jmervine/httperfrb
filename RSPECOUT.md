@@ -25,6 +25,7 @@
 		
 		HTTPerf#run
 		  should run httperf and wait for it to finish
+		  should run with query params
 		
 		HTTPerf#run with verbose
 		  should run httperf and wait for it to finish
@@ -45,48 +46,48 @@
 		  "httperf --client=0/1 --server=localhost --port=80 --uri=/ --send-buffer=4096 --recv-buffer=16384 --num-conns=1 --num-calls=1",
 		 :max_connect_burst_length=>"0",
 		 :total_connections=>"1",
-		 :total_requests=>"0",
-		 :total_replies=>"0",
-		 :total_test_duration=>"0.000",
-		 :connection_rate_per_sec=>"49932.2",
-		 :connection_rate_ms_conn=>"0.0",
-		 :connection_time_min=>"0.0",
-		 :connection_time_avg=>"0.0",
-		 :connection_time_max=>"0.0",
-		 :connection_time_median=>"0.0",
+		 :total_requests=>"1",
+		 :total_replies=>"1",
+		 :total_test_duration=>"0.002",
+		 :connection_rate_per_sec=>"531.1",
+		 :connection_rate_ms_conn=>"1.9",
+		 :connection_time_min=>"2.1",
+		 :connection_time_avg=>"2.1",
+		 :connection_time_max=>"2.1",
+		 :connection_time_median=>"2.5",
 		 :connection_time_stddev=>"0.0",
-		 :connection_time_connect=>"0.1",
-		 :connection_length=>"0.000",
-		 :request_rate_per_sec=>"0.0",
-		 :request_rate_ms_request=>"0.0",
-		 :request_size=>"0.0",
+		 :connection_time_connect=>"0.2",
+		 :connection_length=>"1.000",
+		 :request_rate_per_sec=>"531.1",
+		 :request_rate_ms_request=>"1.9",
+		 :request_size=>"62.0",
 		 :reply_rate_min=>"0.0",
 		 :reply_rate_avg=>"0.0",
 		 :reply_rate_max=>"0.0",
 		 :reply_rate_stddev=>"0.0",
 		 :reply_rate_samples=>"0",
-		 :reply_time_response=>"0.0",
-		 :reply_time_transfer=>"0.0",
-		 :reply_size_header=>"0.0",
-		 :reply_size_content=>"0.0",
+		 :reply_time_response=>"1.6",
+		 :reply_time_transfer=>"0.2",
+		 :reply_size_header=>"287.0",
+		 :reply_size_content=>"54915.0",
 		 :reply_size_footer=>"0.0",
-		 :reply_size_total=>"0.0",
+		 :reply_size_total=>"55202.0",
 		 :reply_status_1xx=>"0",
-		 :reply_status_2xx=>"0",
+		 :reply_status_2xx=>"1",
 		 :reply_status_3xx=>"0",
 		 :reply_status_4xx=>"0",
 		 :reply_status_5xx=>"0",
 		 :cpu_time_user_sec=>"0.00",
 		 :cpu_time_system_sec=>"0.00",
 		 :cpu_time_user_pct=>"0.0",
-		 :cpu_time_system_pct=>"0.0",
-		 :cpu_time_total_pct=>"0.0",
-		 :net_io_kb_sec=>"0.0",
-		 :net_io_bps=>"0.0*10^6",
-		 :errors_total=>"1",
+		 :cpu_time_system_pct=>"53.1",
+		 :cpu_time_total_pct=>"53.1",
+		 :net_io_kb_sec=>"28660.6",
+		 :net_io_bps=>"234.8*10^6",
+		 :errors_total=>"0",
 		 :errors_client_timeout=>"0",
 		 :errors_socket_timeout=>"0",
-		 :errors_conn_refused=>"1",
+		 :errors_conn_refused=>"0",
 		 :errors_conn_reset=>"0",
 		 :errors_fd_unavail=>"0",
 		 :errors_addr_unavail=>"0",
@@ -157,6 +158,6 @@
 		  should parse verbose correctly -- connection_time_99_pct
 		  should have :connection_times Array
 		
-		Finished in 0.5555 seconds
-		86 examples, 0 failures
-		Coverage report generated for RSpec to /home/jmervine/shared/httperfrb/coverage. 125 / 128 LOC (97.66%) covered.
+		Finished in 1.13 seconds
+		87 examples, 0 failures
+		Coverage report generated for RSpec to /home/jmervine/Development/httperfrb/coverage. 1419 / 3096 LOC (45.83%) covered.

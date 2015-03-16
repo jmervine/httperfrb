@@ -2,6 +2,7 @@
 $:.unshift File.dirname(__FILE__)
 require 'httperf/parser'
 require 'httperf/version'
+require 'shellwords'
 
 autoload :PTY,   'pty'
 autoload :Open4, 'open4'
@@ -144,7 +145,10 @@ class HTTPerf
   def options
     opts = ""
     @options.each do |key,val|
-      opts << "--#{key}=#{val} " unless val.nil?
+      unless val.nil?
+        val = val.shellescape if key == 'uri'
+        opts << "--#{key}=#{val} "
+      end
     end
     opts.gsub!("--hog=true", "--hog")
     opts.gsub!("--hog=false", "")

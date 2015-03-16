@@ -115,6 +115,12 @@ describe HTTPerf, "#run" do
     perf.parse = true
     perf.run.keys.count.should eq 50
   end
+
+  it "should run with query params" do
+    perf = HTTPerf.new({ "uri" => "/?foo=bar&bar=foo" })
+    perf.parse = true
+    perf.run.keys.count.should eq 50
+  end
 end
 
 describe HTTPerf, "#run with verbose" do
