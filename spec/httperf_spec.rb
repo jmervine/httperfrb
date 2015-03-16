@@ -74,6 +74,7 @@ describe HTTPerf, "basic usage" do
         "--num-conns 2 --server foobar",
         "--server=foobar --rate 10",
         "--server fooar --rate=10",
+        "--session-cookies=true --wsess='10,1,1'",
         "--num-conns=2 --hog --verbose",
         "--num-conns 2" ].each do |param|
         expect { HTTPerf.new("command" => "httperf #{param}") }.to_not raise_error

@@ -150,6 +150,8 @@ class HTTPerf
     opts.gsub!("--hog=false", "")
     opts.gsub!("--verbose=true", "--verbose")
     opts.gsub!("--verbose=false", "")
+    opts.gsub!("--session-cookies=true", "--session-cookies")
+    opts.gsub!("--session-cookies=false", "")
     opts
   end
 
